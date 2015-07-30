@@ -28,7 +28,3 @@ bot.on("message", function(user, userID, chatID, message, extras) {
 		});
 	}
 });
-
-bot.on("error", function(message) {
-	console.log(message);
-});
