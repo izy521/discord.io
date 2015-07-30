@@ -13,13 +13,13 @@ npm install node-discord
 
 # Events
 Events for the bot, currently only two are used:
+
 ## ready
 ````javascript
 bot.on('ready', function() { });
 ````
 
 ## message
-
 ````javascript
 bot.on('message', function(user, userID, chatID, message, extras) { });
 ````
@@ -29,3 +29,15 @@ bot.on('message', function(user, userID, chatID, message, extras) { });
 * **chatID** : The ID of the room where the bot received the message.
 * **message** : The message.
 * **extras** : Not currently in use, but will contain all the other message data received by the bot.
+
+# Methods
+Methods that get the bot to do things. Only one so far.
+
+## sendMessage(argument)
+````javascript
+bot.sendMessage("Hello World"); //Will send the message to the default chat defined above.
+bot.sendMessage({ //Will send the message to the room with this ID
+	target: "ID of the room",
+	message: "Hello World"
+});
+````
