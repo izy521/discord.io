@@ -44,7 +44,7 @@ bot.on('presence', function(user, userID, status, rawEvent) { });
 * **rawEvent** : The entire event received in JSON.
 
 ## debug
-````
+````javascript
 bot.on('debug', function(rawEvent) { });
 ````
 * **rawEvent** : In this section, it logs ANY event received from Discord.
