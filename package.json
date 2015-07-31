@@ -1,10 +1,11 @@
 {
   "name": "node-discord",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
   "dependencies": {
-    "node-xhr": "^1.0.5"
+    "node-xhr": "^1.0.5",
+    "ws": "^0.7.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +16,7 @@
     "url": "git+https://github.com/izy521/node-discord.git"
   },
   "keywords": [
-    "Discord"
+    "Discord", "Discordapp"
   ],
   "author": "izy521",
   "license": "MIT",

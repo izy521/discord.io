@@ -4,7 +4,7 @@ var bot = new Discordbot({
 	chats: [""] //Chat room as the first string in an array. An array for future-proofing.
 });
 
-bot.on("ready", function() {
+bot.on("ready", function(rawEvent) {
 	console.log("Connected!");
 	console.log("Logged in as: ");
 	console.log(bot.username);
@@ -12,11 +12,11 @@ bot.on("ready", function() {
 	console.log("----------");
 });
 
-bot.on("message", function(user, userID, chatID, message, extras) {
+bot.on("message", function(user, userID, chatID, message, rawEvent) {
 	console.log(user + " - " + userID);
 	console.log("in " + chatID);
 	console.log(message);
-	console.log("----------");
+	console.log("----------");	
 	
 	if (message == "Hello, " + bot.username) {
 		bot.sendMessage("Hello, " + user); //Sending a string message.
@@ -28,3 +28,11 @@ bot.on("message", function(user, userID, chatID, message, extras) {
 		});
 	}
 });
+
+bot.on("presence", function(user, userID, status, rawEvent) {
+	/*console.log(user + " is now: " + status);*/ //Gets the status when a user changes theirs.
+});
+
+/*bot.on("debug", function(rawEvent) {
+	console.log(rawEvent);
+});*/
