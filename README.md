@@ -75,11 +75,11 @@ bot.on('disconnected', function() { });
 # Properties
 
 The client comes with a few properties to help your coding.
-* #### id
-* #### username
-* #### servers
-* #### internals.token
-* #### internals.sessionKey
+* **id**
+* **username**
+* **servers**
+* **internals.token**
+* **internals.sessionKey**
 
 # Methods
 Methods that get the bot to do things.
