@@ -78,8 +78,13 @@ The client comes with a few properties to help your coding.
 * **id**
 * **username**
 * **servers**
-* **internals.token**
-* **internals.sessionKey**
+    * **[Server Choice]**
+        * **channels**
+        * **members**
+* **directMessages**
+* **internals**
+    * **token**
+    * **sessionKey**
 
 # Methods
 Methods that get the bot to do things.
@@ -97,14 +102,13 @@ bot.disconnect()
 ````
 
 ## sendMessage(string/object)
-Sends a message in one of two ways
 ````javascript
-bot.sendMessage("Hello World"); //Will send the message to the default chat defined above.
-bot.sendMessage({ //Will send the message to the room with this ID
-	target: "Channel ID",
+bot.sendMessage({
+	target: "userID/chatID",
 	message: "Hello World"
 });
 ````
+A recent Discord update now forbids you from Direct Messaging a user that does not share a server with you.
 
 ##### The following are similar in syntax. There's a function to resolve server IDs from the channel ID (assuming your bot has enough permissions to access the api, which it should, if you're doing anything below). So you can use the channel ID or server ID.
 
@@ -117,3 +121,7 @@ bot.kick({
 
 //The rest are the same
 ````
+
+## Special Thanks
+* **[Chris92](https://github.com/Chris92de)**
+    * Found out Discord's direct messaging method.
