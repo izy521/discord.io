@@ -28,14 +28,14 @@ var bot = new DiscordClient({
 # Events
 Events for the bot.
 
-## ready
+### ready
 ````javascript
 bot.on('ready', function(rawEvent) { });
 ````
 * **rawEvent** : The entire event received in JSON.
 
 
-## message
+### message
 ````javascript
 bot.on('message', function(user, userID, chatID, message, rawEvent) { });
 ````
@@ -46,7 +46,7 @@ bot.on('message', function(user, userID, chatID, message, rawEvent) { });
 * **message** : The chat message.
 * **rawEvent** : The entire event received in JSON.
 
-## presence
+### presence
 ````javascript
 bot.on('presence', function(user, userID, status, rawEvent) { });
 ````
@@ -55,19 +55,19 @@ bot.on('presence', function(user, userID, status, rawEvent) { });
 * **status** : The user's status. Currently observed: ['online', 'idle', 'offline']
 * **rawEvent** : The entire event received in JSON.
 
-## debug
+### debug
 ````javascript
 bot.on('debug', function(rawEvent) { });
 ````
 * **rawEvent** : In this section, it logs ANY event received from Discord.
 
-## err
+### err
 ````javascript
 bot.on('err', function(error) { });
 ````
 * **error** : Logs the backend error (login, connection issues, etc).
 
-## disconnected
+### disconnected
 ````javascript
 bot.on('disconnected', function() { });
 ````
@@ -89,19 +89,19 @@ The client comes with a few properties to help your coding.
 # Methods
 Methods that get the bot to do things.
 
-## connect()
+### connect()
 Connects to Discord.
 ````javascript
 bot.connect()
 ````
 
-## disconnect()
+### disconnect()
 Disconnects from Discord and emits the "Disconnected" event.
 ````javascript
 bot.disconnect()
 ````
 
-## sendMessage(string/object)
+### sendMessage(string/object)
 ````javascript
 bot.sendMessage({
 	target: "userID/chatID",
