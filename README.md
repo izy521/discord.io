@@ -1,12 +1,15 @@
 # node-discord
 A library for creating a Discord client from Node.js. Currently allows sending and receiving text messages only. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
+## To anyone using 0.1.1
+I'm so sorry, I'm very new at coding for others and forget to update the readme at times because I know what's changed in the backend. I've now added the 'chats' array in the readme example and fixed the sendMessage method. It should have been 'to', not 'target'.
+
 ### Warning:
 This is incredibly Alpha, and I'm not even completely sure how Discord works, but I just wanted to contribute. I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
 
 # What you'll need
 * An email and password from Discord. The client doesn't support anonymous joining.
-* The ID of the chat you wish the bot to default to.
+* The ID of the server you wish the bot to default to.
 
 # How to install
 
@@ -21,6 +24,7 @@ var DiscordClient = require('node-discord');
 var bot = new DiscordClient({
     username: "email@prov.com",
     password: "SuperSecretPassword123",
+	chats: ["66192955777486848"],
     autorun: true
 });
 ````
@@ -28,14 +32,14 @@ var bot = new DiscordClient({
 # Events
 Events for the bot.
 
-### ready
+## ready
 ````javascript
 bot.on('ready', function(rawEvent) { });
 ````
 * **rawEvent** : The entire event received in JSON.
 
 
-### message
+## message
 ````javascript
 bot.on('message', function(user, userID, chatID, message, rawEvent) { });
 ````
@@ -46,7 +50,7 @@ bot.on('message', function(user, userID, chatID, message, rawEvent) { });
 * **message** : The chat message.
 * **rawEvent** : The entire event received in JSON.
 
-### presence
+## presence
 ````javascript
 bot.on('presence', function(user, userID, status, rawEvent) { });
 ````
@@ -55,19 +59,19 @@ bot.on('presence', function(user, userID, status, rawEvent) { });
 * **status** : The user's status. Currently observed: ['online', 'idle', 'offline']
 * **rawEvent** : The entire event received in JSON.
 
-### debug
+## debug
 ````javascript
 bot.on('debug', function(rawEvent) { });
 ````
 * **rawEvent** : In this section, it logs ANY event received from Discord.
 
-### err
+## err
 ````javascript
 bot.on('err', function(error) { });
 ````
 * **error** : Logs the backend error (login, connection issues, etc).
 
-### disconnected
+## disconnected
 ````javascript
 bot.on('disconnected', function() { });
 ````
@@ -89,22 +93,22 @@ The client comes with a few properties to help your coding.
 # Methods
 Methods that get the bot to do things.
 
-### connect()
+## connect()
 Connects to Discord.
 ````javascript
 bot.connect()
 ````
 
-### disconnect()
+## disconnect()
 Disconnects from Discord and emits the "Disconnected" event.
 ````javascript
 bot.disconnect()
 ````
 
-### sendMessage(string/object)
+## sendMessage(string/object)
 ````javascript
 bot.sendMessage({
-	target: "userID/chatID",
+	to: "userID/chatID",
 	message: "Hello World"
 });
 ````
