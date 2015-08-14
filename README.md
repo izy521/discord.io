@@ -1,9 +1,6 @@
 # node-discord
 A library for creating a Discord client from Node.js. Currently allows sending and receiving text messages only. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
-## To anyone using 0.1.1
-I'm so sorry, I'm very new at coding for others and forget to update the readme at times because I know what's changed in the backend. I've now added the 'chats' array in the readme example and fixed the sendMessage method. It should have been 'to', not 'target'.
-
 ### Warning:
 This is incredibly Alpha, and I'm not even completely sure how Discord works, but I just wanted to contribute. I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
 
@@ -41,12 +38,12 @@ bot.on('ready', function(rawEvent) { });
 
 ## message
 ````javascript
-bot.on('message', function(user, userID, chatID, message, rawEvent) { });
+bot.on('message', function(user, userID, channelID, message, rawEvent) { });
 ````
 
 * **user** : The user's name.
 * **userID** : The user's ID.
-* **chatID** : The ID of the room where the bot received the message.
+* **channelID** : The ID of the room where the bot received the message.
 * **message** : The chat message.
 * **rawEvent** : The entire event received in JSON.
 
@@ -108,7 +105,7 @@ bot.disconnect()
 ## sendMessage(string/object)
 ````javascript
 bot.sendMessage({
-	to: "userID/chatID",
+	to: "userID/channelID",
 	message: "Hello World"
 });
 ````
