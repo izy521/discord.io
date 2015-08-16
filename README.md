@@ -1,29 +1,83 @@
 # node-discord
-A library for creating a Discord client from Node.js. Currently allows sending and receiving text messages only. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
+A low-level library for creating a Discord client from Node.js. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
 ### Warning:
+
+**Please update to 0.1.5 immediately. A discord update has outmoded the previous versions.**
 This is incredibly Alpha, and I'm not even completely sure how Discord works, but I just wanted to contribute. I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
 
 # What you'll need
 * An email and password from Discord. The client doesn't support anonymous joining.
-* The ID of the server you wish the bot to default to.
 
 # How to install
-
 ````javascript
 npm install node-discord
 ````
 
 # Example
-
 ````javascript
-var DiscordClient = require('node-discord');
-var bot = new DiscordClient({
-    username: "email@prov.com",
-    password: "SuperSecretPassword123",
-	chats: ["66192955777486848"],
-    autorun: true
+/*Variable area*/
+var Discordbot = require('node-discord');
+var bot = new Discordbot({
+	username: "",
+	password: "",
+	autorun: true
 });
+
+/*Event area*/
+bot.on("err", function(error) {
+	console.log(error)
+});
+
+bot.on("ready", function(rawEvent) {
+	console.log("Connected!");
+	console.log("Logged in as: ");
+	console.log(bot.username);
+	console.log(bot.id);
+	console.log("----------");
+});
+
+bot.on("message", function(user, userID, channelID, message, rawEvent) {
+	console.log(user + " - " + userID);
+	console.log("in " + channelID);
+	console.log(message);
+	console.log("----------");
+	
+	if (message === "ping") {
+		sendMessages(channelID, ["Pong"]);
+	}
+});
+
+bot.on("presence", function(user, userID, status, rawEvent) {
+	/*console.log(user + " is now: " + status);*/
+});
+
+/*bot.on("debug", function(rawEvent) {
+	console.log(rawEvent) //Logs every event
+})*/
+
+bot.on("disconnected", function() {
+	console.log("Bot disconnected");
+	/*bot.connect()*/ //Auto reconnect
+});
+
+/*Function declaration area*/
+function sendMessages(ID, messageArr, interval) {
+	if (!interval) interval = 200;
+	
+	var messInt = setInterval(function() {
+		if (messageArr.length > 0) {
+			bot.sendMessage({
+				to: ID,
+				message: messageArr[0]
+			});
+			messageArr.splice(0,1);
+		} else {
+			clearInterval(messInt);
+		}
+	}, interval);
+}
+
 ````
 
 # Events
@@ -85,7 +139,6 @@ The client comes with a few properties to help your coding.
 * **directMessages**
 * **internals**
     * **token**
-    * **sessionKey**
 
 # Methods
 Methods that get the bot to do things.
@@ -102,7 +155,7 @@ Disconnects from Discord and emits the "Disconnected" event.
 bot.disconnect()
 ````
 
-## sendMessage(string/object)
+## sendMessage(object)
 ````javascript
 bot.sendMessage({
 	to: "userID/channelID",
