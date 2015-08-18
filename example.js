@@ -34,9 +34,9 @@ bot.on("presence", function(user, userID, status, rawEvent) {
 	/*console.log(user + " is now: " + status);*/
 });
 
-/*bot.on("debug", function(rawEvent) {
-	console.log(rawEvent) //Logs every event
-})*/
+bot.on("debug", function(rawEvent) {
+	/*console.log(rawEvent)*/ //Logs every event
+});
 
 bot.on("disconnected", function() {
 	console.log("Bot disconnected");

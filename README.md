@@ -3,8 +3,8 @@ A low-level library for creating a Discord client from Node.js. [Come join the d
 
 ### Warning:
 
-**Please update to 0.1.5 immediately. A discord update has outmoded the previous versions.**
-This is incredibly Alpha, and I'm not even completely sure how Discord works, but I just wanted to contribute. I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
+**Please update to 0.1.5 immediately. A Discord update has outmoded the previous versions.**
+I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
 
 # What you'll need
 * An email and password from Discord. The client doesn't support anonymous joining.
@@ -52,9 +52,9 @@ bot.on("presence", function(user, userID, status, rawEvent) {
 	/*console.log(user + " is now: " + status);*/
 });
 
-/*bot.on("debug", function(rawEvent) {
-	console.log(rawEvent) //Logs every event
-})*/
+bot.on("debug", function(rawEvent) {
+	/*console.log(rawEvent)*/ //Logs every event
+});
 
 bot.on("disconnected", function() {
 	console.log("Bot disconnected");
