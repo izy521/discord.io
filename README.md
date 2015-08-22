@@ -1,9 +1,7 @@
 # node-discord
-A low-level library for creating a Discord client from Node.js. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
+A low-level library for creating a Discord client from Node.js. **Now Discord API v2 compliant** [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
 ### Warning:
-
-**Please update to 0.1.5 immediately. A Discord update has outmoded the previous versions.**
 I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
 
 # What you'll need
@@ -130,43 +128,101 @@ bot.on('disconnected', function() { });
 # Properties
 
 The client comes with a few properties to help your coding.
-* **id**
-* **username**
-* **servers**
-    * **[Server Choice]**
-        * **channels**
-        * **members**
-* **directMessages**
-* **internals**
-    * **token**
+* **id** -String-
+* **username** -String-
+* **email** -String-
+* **verified** -Bool-
+* **discriminator** -String-
+* **avatar** -String-
+* **servers** -Object-
+    * **[Server Choice]** -Object-
+        * **channels** -Array-
+        * **members** -Array-
+        * **roles** -Array-
+* **directMessages** -Object-
+* **internals** -Object-
+    * **token** -String-
 
 # Methods
 Methods that get the bot to do things.
 
-## connect()
+## -Connection-
+
+### connect()
 Connects to Discord.
 ````javascript
 bot.connect()
 ````
 
-## disconnect()
+### disconnect()
 Disconnects from Discord and emits the "Disconnected" event.
 ````javascript
 bot.disconnect()
 ````
+## -Bot Status-
 
-## sendMessage(object)
+### setUsername(-String-)
+````javascript
+bot.setUsername("Yuna");
+````
+
+## -Bot Content Actions-
+
+### sendMessage(-Object-)
 ````javascript
 bot.sendMessage({
 	to: "userID/channelID",
 	message: "Hello World"
 });
+
+//Or, assuming the helper function is there, from the example
+
+sendMessages(channelID, ["An", "Array", "Of", "Messages"]); 
+//Will send them each as their own message
 ````
 A recent Discord update now forbids you from Direct Messaging a user that does not share a server with you.
 
-##### The following are similar in syntax. There's a function to resolve server IDs from the channel ID (assuming your bot has enough permissions to access the api, which it should, if you're doing anything below). So you can use the channel ID or server ID.
+### uploadFile(-Object-)
+````javascript
+bot.uploadFile({
+    channel: "channelID",
+    file: "fillsquare.png"
+});
 
-### kick(object), ban(object), unban(object), mute(object), unmute(object), deafen(object), undeafen(object)
+//Or, assuming the helper function is there, from the example
+
+sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
+//Will send them each as their own message/file
+````
+
+### editMessage(-Object-)
+````javascript
+bot.editMessage({
+    channel: "channelID",
+    messageID: rawEvent.d.id,
+    message: "Your new message"
+});
+````
+
+### deleteMessage(-Object-)
+````javascript
+bot.deleteMessage({
+    channel: "channelID",
+    messageID: rawEvent.d.id
+});
+````
+
+## -Bot Management Actions-
+
+##### The following are similar in syntax. 
+
+* ### kick(-Object-)
+* ### ban(-Object-)
+* ### unban(-Object-)
+* ### mute(-Object-)
+* ### unmute(-Object-)
+* ### deafen(-Object-)
+* ### undeafen(-Object-)
 ````javascript
 bot.kick({
     channel: "Server or Channel ID",
@@ -179,3 +235,11 @@ bot.kick({
 ## Special Thanks
 * **[Chris92](https://github.com/Chris92de)**
     * Found out Discord's direct messaging method.
+    
+## Related projects
+* [Discord.NET](https://github.com/RogueException/Discord.Net)
+* [DiscordSharp](https://github.com/Luigifan/DiscordSharp)
+* [discord.js](https://github.com/discord-js/discord.js)
+* [Discord4J](https://github.com/knobody/Discord4J)
+* [PyDiscord](https://github.com/Rapptz/pydiscord)
+
