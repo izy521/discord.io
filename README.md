@@ -42,7 +42,9 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 	console.log("----------");
 	
 	if (message === "ping") {
-		sendMessages(channelID, ["Pong"]);
+		sendMessages(channelID, ["Pong"]); //Sending a message with our helper function
+	} else if (message === "picture") {
+		sendFiles(channelID, ["fillsquare.png"]); //Sending a file with our helper function
 	}
 });
 
@@ -61,7 +63,7 @@ bot.on("disconnected", function() {
 
 /*Function declaration area*/
 function sendMessages(ID, messageArr, interval) {
-	if (!interval) interval = 200;
+	if (!interval) interval = 250;
 	
 	var messInt = setInterval(function() {
 		if (messageArr.length > 0) {
@@ -72,6 +74,22 @@ function sendMessages(ID, messageArr, interval) {
 			messageArr.splice(0,1);
 		} else {
 			clearInterval(messInt);
+		}
+	}, interval);
+}
+
+function sendFiles(channelID, fileArr, interval) {
+	if (!interval) interval = 500;
+	
+	var fileInt = setInterval(function() {
+		if (fileArr.length > 0) {
+			bot.uploadFile({
+				channel: channelID,
+				file: fileArr[0]
+			});
+			fileArr.splice(0,1);
+		} else {
+			clearInterval(fileInt);
 		}
 	}, interval);
 }

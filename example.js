@@ -76,3 +76,4 @@ function sendFiles(channelID, fileArr, interval) {
 			clearInterval(fileInt);
 		}
 	}, interval);
+}
