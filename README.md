@@ -190,7 +190,8 @@ bot.setUsername("Yuna");
 ````javascript
 bot.sendMessage({
 	to: "userID/channelID",
-	message: "Hello World"
+	message: "Hello World",
+	nonce: "80085" //Discord update for their clients, not required at all and can be left out. The backend will generate a random one if it is.
 });
 
 //Or, assuming the helper function is there, from the example
