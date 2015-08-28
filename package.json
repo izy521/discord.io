@@ -1,5 +1,5 @@
 {
-  "name": "node-discord",
+  "name": "discord.io",
   "version": "0.2.2",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
@@ -17,17 +17,17 @@
   },
   "keywords": [
     "Discord",
-    "Discordapp"
+    "Discordapp",
+    "Client",
+    "Bot",
+    "Library"
   ],
-  "author": {
-    "name": "izy521"
-  },
+  "author": "izy521",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/izy521/node-discord/issues"
   },
   "homepage": "https://github.com/izy521/node-discord#readme",
-  "_id": "node-discord@0.1.2",
   "_shasum": "07189eb706e49d6305325d17665b454c5c1ef4d1",
   "_from": "node-discord@*",
   "_npmVersion": "2.11.3",
@@ -41,10 +41,7 @@
     "tarball": "http://registry.npmjs.org/node-discord/-/node-discord-0.1.2.tgz"
   },
   "maintainers": [
-    {
-      "name": "izy521",
-      "email": "kyekye321@gmail.com"
-    }
+    "izy521 <kyekye321@gmail.com>"
   ],
   "directories": {},
   "_resolved": "https://registry.npmjs.org/node-discord/-/node-discord-0.1.2.tgz"
