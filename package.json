@@ -1,19 +1,14 @@
 {
   "name": "discord.io",
-  "version": "0.2.2",
+  "version": "1.0.1",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
-  "dependencies": {
-    "request": "^2.60.0",
-    "ws": "^0.7.2"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/izy521/node-discord.git"
+    "url": "git+https://github.com/izy521/discord.io.git"
   },
   "keywords": [
     "Discord",
@@ -25,24 +20,7 @@
   "author": "izy521",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/izy521/node-discord/issues"
+    "url": "https://github.com/izy521/discord.io/issues"
   },
-  "homepage": "https://github.com/izy521/node-discord#readme",
-  "_shasum": "07189eb706e49d6305325d17665b454c5c1ef4d1",
-  "_from": "node-discord@*",
-  "_npmVersion": "2.11.3",
-  "_nodeVersion": "0.12.7",
-  "_npmUser": {
-    "name": "izy521",
-    "email": "kyekye321@gmail.com"
-  },
-  "dist": {
-    "shasum": "07189eb706e49d6305325d17665b454c5c1ef4d1",
-    "tarball": "http://registry.npmjs.org/node-discord/-/node-discord-0.1.2.tgz"
-  },
-  "maintainers": [
-    "izy521 <kyekye321@gmail.com>"
-  ],
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/node-discord/-/node-discord-0.1.2.tgz"
+  "homepage": "https://github.com/izy521/discord.io#readme"
 }

@@ -1,4 +1,4 @@
-# node-discord
+# discord.io
 A low-level library for creating a Discord client from Node.js. **Now Discord API v2 compliant** [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
 ### Warning:
@@ -9,13 +9,13 @@ I'd recommend updating frequently during the start of the project. I've also bee
 
 # How to install
 ````javascript
-npm install node-discord
+npm install discord.io
 ````
 
 # Example
 ````javascript
 /*Variable area*/
-var Discordbot = require('node-discord');
+var Discordbot = require('discord.io');
 var bot = new Discordbot({
 	username: "",
 	password: "",

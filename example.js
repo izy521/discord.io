@@ -1,5 +1,5 @@
 /*Variable area*/
-var Discordbot = require('node-discord');
+var Discordbot = require('discord.io');
 var bot = new Discordbot({
 	username: "",
 	password: "",
