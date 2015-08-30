@@ -47,33 +47,67 @@ bot.on("disconnected", function() {
 
 /*Function declaration area*/
 function sendMessages(ID, messageArr, interval) {
-	if (!interval) interval = 250;
+	var len = messageArr.length;
+	var callback;
+	var resArr = [];
+	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	if (typeof(interval) !== 'number') interval = 250;
 	
-	var messInt = setInterval(function() {
-		if (messageArr.length > 0) {
-			bot.sendMessage({
-				to: ID,
-				message: messageArr[0]
-			});
-			messageArr.splice(0,1);
-		} else {
-			clearInterval(messInt);
+	function _sendMessages() {
+		setTimeout(function() {
+			if (messageArr.length > 0) {
+				bot.sendMessage({
+					to: ID,
+					message: messageArr[0]
+				}, function(res) {
+					resArr.push(res);
+				});
+				messageArr.splice(0, 1);
+				_sendMessages();
+			}
+		}, interval);
+	}
+	_sendMessages();
+	
+	var checkInt = setInterval(function() {
+		if (resArr.length === len) {
+			if (typeof(callback) === 'function') {
+				callback(resArr);
+			}
+			clearInterval(checkInt);
 		}
-	}, interval);
+	}, 0);
 }
 
 function sendFiles(channelID, fileArr, interval) {
-	if (!interval) interval = 500;
+	var len = fileArr.length;
+	var callback;
+	var resArr = [];
+	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	if (typeof(interval) !== 'number') interval = 500;
 	
-	var fileInt = setInterval(function() {
-		if (fileArr.length > 0) {
-			bot.uploadFile({
-				channel: channelID,
-				file: fileArr[0]
-			});
-			fileArr.splice(0,1);
-		} else {
-			clearInterval(fileInt);
+	function _sendFiles() {
+		setTimeout(function() {
+			if (fileArr.length > 0) {
+				bot.uploadFile({
+					channel: channelID,
+					file: fileArr[0]
+				}, function(res) {
+					resArr.push(res);
+				});
+				fileArr.splice(0, 1);
+				_sendFiles();
+			}
+		}, interval);
+	}
+	_sendFiles();
+	
+	var checkInt = setInterval(function() {
+		if (resArr.length === len) {
+			if (typeof(callback) === 'function') {
+				callback(resArr);
+			}
+			clearInterval(checkInt);
 		}
-	}, interval);
+	}, 0);
 }

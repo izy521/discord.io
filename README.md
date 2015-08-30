@@ -179,19 +179,25 @@ bot.disconnect()
 ````
 ## -Bot Status-
 
-### setUsername(-String-)
+### setUsername(-String-, [-Function-(response)])
 ````javascript
-bot.setUsername("Yuna");
+bot.setUsername("Yuna", function(response) { //CB Optional
+    console.log(response);
+});
 ````
 
 ## -Bot Content Actions-
 
-### sendMessage(-Object-)
+**The sendMessages() and sendFiles() helper functions accept a third and fourth argument. The third can be either a number interval or a callback function containing an array of responses for messages sent. The fourth is only the callback.**
+
+### sendMessage(-Object-, [-Function-(response)])
 ````javascript
 bot.sendMessage({
 	to: "userID/channelID",
 	message: "Hello World",
-	nonce: "80085" //Discord update for their clients, not required at all and can be left out. The backend will generate a random one if it is.
+	nonce: "80085" //Optional
+} function(response) { //CB Optional
+    console.log(response.id); //Message ID
 });
 
 //Or, assuming the helper function is there, from the example
@@ -201,11 +207,13 @@ sendMessages(channelID, ["An", "Array", "Of", "Messages"]);
 ````
 A recent Discord update now forbids you from Direct Messaging a user that does not share a server with you.
 
-### uploadFile(-Object-)
+### uploadFile(-Object-,[-Function-(response)])
 ````javascript
 bot.uploadFile({
     channel: "channelID",
     file: "fillsquare.png"
+}, function(response) { //CB Optional
+    console.log(response)
 });
 
 //Or, assuming the helper function is there, from the example
@@ -214,12 +222,14 @@ sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
 //Will send them each as their own message/file
 ````
 
-### editMessage(-Object-)
+### editMessage(-Object-, [-Function-(response)])
 ````javascript
 bot.editMessage({
     channel: "channelID",
     messageID: rawEvent.d.id,
     message: "Your new message"
+}, function(response) { //CB Optional
+    console.log(response);
 });
 ````
 
@@ -228,6 +238,15 @@ bot.editMessage({
 bot.deleteMessage({
     channel: "channelID",
     messageID: rawEvent.d.id
+});
+````
+
+### fixMessage(-String-)
+````javascript
+//Assuming someone typed "Hello @izy521"
+bot.on('message', function(user, userID, channelID, message, rawEvent) {
+    console.log(message) //"Hello <@66186356581208064>"
+    console.log(bot.fixMessage(message)) //"Hello @izy521"
 });
 ````
 
