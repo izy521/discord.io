@@ -214,7 +214,7 @@ bot.disconnect()
 ````
 ## -Bot Status-
 
-### setUsername(-String-, [-Function-(response)])
+### setUsername(-String-, [callback(response)])
 ````javascript
 bot.setUsername("Yuna", function(response) { //CB Optional
     console.log(response);
@@ -225,7 +225,7 @@ bot.setUsername("Yuna", function(response) { //CB Optional
 
 **The sendMessages() and sendFiles() helper functions accept a third and fourth argument. The third can be either a number interval or a callback function containing an array of responses for messages sent. The fourth is only the callback.**
 
-### sendMessage(-Object-, [-Function-(response)])
+### sendMessage(-Object-, [callback(response)])
 ````javascript
 bot.sendMessage({
 	to: "userID/channelID",
@@ -242,7 +242,7 @@ sendMessages(channelID, ["An", "Array", "Of", "Messages"]);
 ````
 A recent Discord update now forbids you from Direct Messaging a user that does not share a server with you.
 
-### uploadFile(-Object-,[-Function-(response)])
+### uploadFile(-Object-, [callback(response)])
 ````javascript
 bot.uploadFile({
     channel: "channelID",
@@ -257,7 +257,7 @@ sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
 //Will send them each as their own message/file
 ````
 
-### editMessage(-Object-, [-Function-(response)])
+### editMessage(-Object-, [callback(response)])
 ````javascript
 bot.editMessage({
     channel: "channelID",
@@ -287,6 +287,38 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
 
 ## -Bot Management Actions-
 
+### createServer(-Object-, [callback(response)])
+````javascript
+bot.createServer({
+    icon: null,
+    name: "Test server",
+    region: "london" //If you can't remember your preferred server, the bot will give you a list from Discord
+});
+````
+
+### deleteServer(-Object-, [callback(response)])
+````javascript
+bot.deleteServer({
+    server: "482381292385232"
+});
+````
+
+### createChannel(-Object-, [callback(response)])
+````javascript
+bot.createChannel({
+    server: "429318923122184",
+    type: "text", //or "voice"
+    name: "CoolNameBruh"
+});
+````
+
+### deleteChannel(-Object-, [callback(response)])
+````javascript
+bot.deleteChannel({
+    channel: "32949213254134"
+});
+````
+
 ##### The following are similar in syntax. 
 
 * ### kick(-Object-)
@@ -303,6 +335,13 @@ bot.kick({
 });
 
 //The rest are the same
+````
+
+## -Misc-
+
+### serverFromChannel(-String-)
+````javascript
+bot.serverFromChannel("76213969290797056") //Returns "66192955777486848"
 ````
 
 ## Special Thanks
