@@ -223,7 +223,7 @@ bot.setUsername("Yuna", function(response) { //CB Optional
 
 ## -Bot Content Actions-
 
-**The sendMessages() and sendFiles() helper functions accept a third and fourth argument. The third can be either a number interval or a callback function containing an array of responses for messages sent. The fourth is only the callback.**
+**The sendMessages() and sendFiles() helper functions (included in the example.js) accept a third and fourth argument. The third can be either a number interval or a callback function containing an array of responses for messages sent. The fourth is only the callback.**
 
 ### sendMessage(-Object-, [callback(response)])
 ````javascript
@@ -255,6 +255,15 @@ bot.uploadFile({
 
 sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
 //Will send them each as their own message/file
+````
+### getMessages(-Object-, callback(messageArray))
+````javascript
+bot.getMessages({
+    channel: "channelID",
+    limit: 50 //If 'limit' isn't added, it defaults to 50, the Discord default
+}, function(messageArr) {
+    //Do something with your array of messages
+});
 ````
 
 ### editMessage(-Object-, [callback(response)])
