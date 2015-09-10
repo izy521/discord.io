@@ -245,7 +245,7 @@ A recent Discord update now forbids you from Direct Messaging a user that does n
 ### uploadFile(-Object-, [callback(response)])
 ````javascript
 bot.uploadFile({
-    channel: "channelID",
+    channel: "Your Channel ID",
     file: "fillsquare.png"
 }, function(response) { //CB Optional
     console.log(response)
@@ -259,7 +259,7 @@ sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
 ### getMessages(-Object-, callback(messageArray))
 ````javascript
 bot.getMessages({
-    channel: "channelID",
+    channel: "Your Channel ID",
     limit: 50 //If 'limit' isn't added, it defaults to 50, the Discord default
 }, function(messageArr) {
     //Do something with your array of messages
@@ -269,7 +269,7 @@ bot.getMessages({
 ### editMessage(-Object-, [callback(response)])
 ````javascript
 bot.editMessage({
-    channel: "channelID",
+    channel: "Your Channel ID",
     messageID: rawEvent.d.id,
     message: "Your new message"
 }, function(response) { //CB Optional
@@ -280,7 +280,7 @@ bot.editMessage({
 ### deleteMessage(-Object-)
 ````javascript
 bot.deleteMessage({
-    channel: "channelID",
+    channel: "Your Channel ID",
     messageID: rawEvent.d.id
 });
 ````
@@ -308,14 +308,14 @@ bot.createServer({
 ### deleteServer(-Object-, [callback(response)])
 ````javascript
 bot.deleteServer({
-    server: "482381292385232"
+    server: "Your Server ID"
 });
 ````
 
 ### createChannel(-Object-, [callback(response)])
 ````javascript
 bot.createChannel({
-    server: "429318923122184",
+    server: "Your Server ID",
     type: "text", //or "voice"
     name: "CoolNameBruh"
 });
@@ -324,7 +324,25 @@ bot.createChannel({
 ### deleteChannel(-Object-, [callback(response)])
 ````javascript
 bot.deleteChannel({
-    channel: "32949213254134"
+    channel: "Your Channel ID"
+});
+````
+
+### addToRole(-Object-)
+````javascript
+bot.addToRole({
+    server: "Your Server ID",
+    user: "The User ID",
+    role: "The Role ID"
+});
+````
+
+### removeFromRole(-Object-)
+````javascript
+bot.removeFromRole({
+    server: "Your Server ID",
+    user: "The User ID",
+    role: "The Role ID"
 });
 ````
 
@@ -337,6 +355,7 @@ bot.deleteChannel({
 * ### unmute(-Object-)
 * ### deafen(-Object-)
 * ### undeafen(-Object-)
+
 ````javascript
 bot.kick({
     channel: "Server or Channel ID",
