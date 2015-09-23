@@ -1,7 +1,7 @@
 /*Variable area*/
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
-	username: "",
+	email: "",
 	password: "",
 	autorun: true
 });

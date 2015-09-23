@@ -17,7 +17,7 @@ npm install discord.io
 /*Variable area*/
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
-	username: "",
+	email: "",
 	password: "",
 	autorun: true
 });
@@ -359,7 +359,8 @@ bot.removeFromRole({
 ````javascript
 bot.kick({
     channel: "Server or Channel ID",
-    target: "User ID"
+    target: "User ID",
+	lastDays: 1 //ONLY used in banning. A number that can be either 1 or 7. It's also optional.
 });
 
 //The rest are the same
