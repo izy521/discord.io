@@ -1,5 +1,5 @@
 # discord.io
-A low-level library for creating a Discord client from Node.js. **Now Discord API v2 compliant** [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
+A low-level library for creating a Discord client from Node.js. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
 ### Warning:
 I'd recommend updating frequently during the start of the project. I've also been told, by one of the developers, "we change it [The API] often", so I'll try to keep the updates regular.
@@ -10,125 +10,6 @@ I'd recommend updating frequently during the start of the project. I've also bee
 # How to install
 ````javascript
 npm install discord.io
-````
-
-# Example
-````javascript
-/*Variable area*/
-var Discordbot = require('discord.io');
-var bot = new Discordbot({
-	email: "",
-	password: "",
-	autorun: true
-});
-
-/*Event area*/
-bot.on("err", function(error) {
-	console.log(error)
-});
-
-bot.on("ready", function(rawEvent) {
-	console.log("Connected!");
-	console.log("Logged in as: ");
-	console.log(bot.username);
-	console.log(bot.id);
-	console.log("----------");
-});
-
-bot.on("message", function(user, userID, channelID, message, rawEvent) {
-	console.log(user + " - " + userID);
-	console.log("in " + channelID);
-	console.log(message);
-	console.log("----------");
-	
-	if (message === "ping") {
-		sendMessages(channelID, ["Pong"]); //Sending a message with our helper function
-	} else if (message === "picture") {
-		sendFiles(channelID, ["fillsquare.png"]); //Sending a file with our helper function
-	}
-});
-
-bot.on("presence", function(user, userID, status, rawEvent) {
-	/*console.log(user + " is now: " + status);*/
-});
-
-bot.on("debug", function(rawEvent) {
-	/*console.log(rawEvent)*/ //Logs every event
-});
-
-bot.on("disconnected", function() {
-	console.log("Bot disconnected");
-	/*bot.connect()*/ //Auto reconnect
-});
-
-/*Function declaration area*/
-function sendMessages(ID, messageArr, interval) {
-	var len = messageArr.length;
-	var callback;
-	var resArr = [];
-	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof(interval) !== 'number') interval = 250;
-	
-	function _sendMessages() {
-		setTimeout(function() {
-			if (messageArr.length > 0) {
-				bot.sendMessage({
-					to: ID,
-					message: messageArr[0]
-				}, function(res) {
-					resArr.push(res);
-				});
-				messageArr.splice(0, 1);
-				_sendMessages();
-			}
-		}, interval);
-	}
-	_sendMessages();
-	
-	var checkInt = setInterval(function() {
-		if (resArr.length === len) {
-			if (typeof(callback) === 'function') {
-				callback(resArr);
-			}
-			clearInterval(checkInt);
-		}
-	}, 0);
-}
-
-function sendFiles(channelID, fileArr, interval) {
-	var len = fileArr.length;
-	var callback;
-	var resArr = [];
-	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof(interval) !== 'number') interval = 500;
-	
-	function _sendFiles() {
-		setTimeout(function() {
-			if (fileArr.length > 0) {
-				bot.uploadFile({
-					channel: channelID,
-					file: fileArr[0]
-				}, function(res) {
-					resArr.push(res);
-				});
-				fileArr.splice(0, 1);
-				_sendFiles();
-			}
-		}, interval);
-	}
-	_sendFiles();
-	
-	var checkInt = setInterval(function() {
-		if (resArr.length === len) {
-			if (typeof(callback) === 'function') {
-				callback(resArr);
-			}
-			clearInterval(checkInt);
-		}
-	}, 0);
-}
-
-
 ````
 
 # Events
@@ -214,11 +95,25 @@ bot.disconnect()
 ````
 ## -Bot Status-
 
-### setUsername(-String-, [callback(response)])
+### editUserInfo(-Object-, [callback(response)])
 ````javascript
-bot.setUsername("Yuna", function(response) { //CB Optional
-    console.log(response);
+bot.editUserInfo({
+    avatar: 'ImageEncodedIntoBase64String', //Optional
+    email: 'youremail@provder.com', //Optional
+    new_password: 'supersecretpass123', //Optional
+    password: 'supersecretpass', //Required
+    username: 'Yuna' //Optional
 });
+````
+
+### setUserPresence(-Object-)
+````javascript
+bot.setPresence({
+    idle_since: Date.now()  //Optional, sets your presence to idle, 
+                            //can also be null for online
+    game_id: 405    //Optional, indicates you are playing a game
+                    //can also be null to remove game
+})
 ````
 
 ## -Bot Content Actions-
@@ -325,6 +220,15 @@ bot.createChannel({
 ````javascript
 bot.deleteChannel({
     channel: "Your Channel ID"
+});
+````
+
+### editChannelInfo(-Object-, [callback(response)])
+````javascript
+bot.editChannelInfo({
+    name: "New Channel", //Optional
+    position: 0, //Optional
+    topic: "Our new topic" //Optional
 });
 ````
 
