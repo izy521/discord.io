@@ -14,9 +14,7 @@ bot.on("err", function(error) {
 bot.on("ready", function(rawEvent) {
 	console.log("Connected!");
 	console.log("Logged in as: ");
-	console.log(bot.username);
-	console.log(bot.id);
-	console.log("----------");
+	console.log(bot.username + " - (" + bot.id + ")");
 });
 
 bot.on("message", function(user, userID, channelID, message, rawEvent) {
