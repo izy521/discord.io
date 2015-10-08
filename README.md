@@ -232,6 +232,20 @@ bot.editChannelInfo({
 });
 ````
 
+### acceptInvite(-String-, [callback(response)])
+````javascript
+bot.acceptInvite("0MvHMfHcTKVVmIGP")
+````
+
+### createInvite(-String-, [callback(response)])
+````javascript
+bot.createInvite({
+    channel: "66192955777486848"
+}, function(res) {
+    console.log(res.code); //The invite code, just paste it together with the discord.gg url
+})
+````
+
 ### addToRole(-Object-)
 ````javascript
 bot.addToRole({
@@ -269,6 +283,18 @@ bot.kick({
 
 //The rest are the same
 ````
+
+## -Voice-
+Just laying down the foundation, sending audio has yet to be implimented.
+### joinVoiceChannel(-String-)
+```javascript
+bot.joinVoiceChannel("66192955798458368");
+```
+
+### leaveVoiceChannel(-String-)
+```javascript
+bot.leaveVoiceChannel("66192955798458368")
+```
 
 ## -Misc-
 
