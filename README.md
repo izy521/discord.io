@@ -337,7 +337,9 @@ bot.serverFromChannel("76213969290797056") //Returns "66192955777486848"
 ## Special Thanks
 * **[Chris92](https://github.com/Chris92de)**
     * Found out Discord's direct messaging method.
-    
+* **[Voltana](https://github.com/RogueException)**
+	* Figured out how to do the bitwise freaking... whatever, permissions.
+	
 ## Related projects
 * [Discord.NET](https://github.com/RogueException/Discord.Net)
 * [DiscordSharp](https://github.com/Luigifan/DiscordSharp)
