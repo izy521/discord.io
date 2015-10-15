@@ -240,11 +240,42 @@ bot.acceptInvite("0MvHMfHcTKVVmIGP")
 ### createInvite(-String-, [callback(response)])
 ````javascript
 bot.createInvite({
-    channel: "66192955777486848"
+    channel: "Your Channel ID / Server ID"
 }, function(res) {
     console.log(res.code); //The invite code, just paste it together with the discord.gg url
 })
 ````
+
+### createRole(-String-)
+```javascript
+bot.createRole("Your Server ID");
+//There's no response, unfortunately. You'll have to listen to the websocket's debug for the role ID.
+```
+
+### editRole(-Object-)
+Please read the [Permissions](https://github.com/izy521/discord.io/blob/master/docs/permissions.md) and [Colors](https://github.com/izy521/discord.io/blob/master/docs/colors.md) readmes, only so you don't destroy your roles and unleash chaos upon your server. (Won't actually go through if there are any issues)
+```javascript
+bot.editRole({
+    server: "Your Server ID",
+    role: "Your Role ID",
+    name: "Awesome Role Name",
+    hoist: true, //or false, will seperate them
+    permissions: {
+        GENERAL_CREATE_INSTANT_INVITE: false,
+        TEXT_MENTION_EVERYONE: true,
+        VOICE_CONNECT: true
+    }, //Read the permissions readme, IMPORTANT
+    color: "DARK_AQUA" //Read the colors readme, IMPORTANT
+});
+```
+
+### deleteRole(-Object-)
+```javascript
+bot.deleteRole({
+    server: "Your Server ID",
+    role: "Your Role ID"
+});
+```
 
 ### addToRole(-Object-)
 ````javascript
