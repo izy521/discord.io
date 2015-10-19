@@ -155,6 +155,8 @@ sendFiles(channelID, ["fillsquare.png", "anotherpossibleimage.png"]);
 ````javascript
 bot.getMessages({
     channel: "Your Channel ID",
+	before: "messageID", //Optional
+	after: "messageID" //Optional
     limit: 50 //If 'limit' isn't added, it defaults to 50, the Discord default
 }, function(messageArr) {
     //Do something with your array of messages
