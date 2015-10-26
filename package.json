@@ -26,5 +26,10 @@
   "dependencies": {
     "request": "^2.61.0",
     "ws": "^0.8.0"
+  },
+  "optionalDependencies": {
+    "lame": "^1.2.0",
+    "node-opus": "^0.1.0",
+	"wav": "^1.0.0"
   }
 }
