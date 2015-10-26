@@ -318,15 +318,29 @@ bot.kick({
 ````
 
 ## -Voice-
-Just laying down the foundation, sending audio has yet to be implimented.
-### joinVoiceChannel(-String-)
+Just laying down the foundation, sending audio has yet to be finalized.
+### joinVoiceChannel(-String-, [callback()])
 ```javascript
-bot.joinVoiceChannel("66192955798458368");
+bot.joinVoiceChannel("66192955798458368", function() {
+    bot.testAudio(etc);
+});
 ```
 
 ### leaveVoiceChannel(-String-)
 ```javascript
 bot.leaveVoiceChannel("66192955798458368")
+```
+
+### testAudio(-Object-)
+As the name specifies, it's a test. Still being developed and not finished.
+
+**WARNING**: If you want the input file to be audible at all, it MUST be a: .WAV, 48kHz, mono (can be stereo, but Discord transforms it back into mono) file.
+```javascript
+bot.testAudio({
+    server: "Your Server ID",
+    channel: "Your VOICE Channel ID",
+    stream: require('fs').createReadStream('music.wav')
+});
 ```
 
 ## -Misc-
@@ -341,6 +355,8 @@ bot.serverFromChannel("76213969290797056") //Returns "66192955777486848"
     * Found out Discord's direct messaging method.
 * **[Voltana](https://github.com/RogueException)**
 	* Figured out how to do the bitwise freaking... whatever, permissions.
+* **[#q](https://github.com/qeled)**
+	* Essentially spelled out the whole voice process.
 	
 ## Related projects
 * [Discord.NET](https://github.com/RogueException/Discord.Net)
