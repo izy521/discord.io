@@ -5,7 +5,7 @@ var bot = new Discordbot({
 	password: "",
 	autorun: true
 });
-
+//kek
 /*Event area*/
 bot.on("err", function(error) {
 	console.log(error)
