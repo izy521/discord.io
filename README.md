@@ -334,12 +334,12 @@ bot.leaveVoiceChannel("66192955798458368")
 ### testAudio(-Object-)
 As the name specifies, it's a test. Still being developed and not finished.
 
-**WARNING**: If you want the input file to be audible at all, it MUST be a: .WAV, 48kHz, mono (can be stereo, but Discord transforms it back into mono) file.
+**WARNING**: This requires ffmpeg or avconv be installed, and they have to be added to the PATH.
 ```javascript
 bot.testAudio({
     server: "Your Server ID",
     channel: "Your VOICE Channel ID",
-    stream: require('fs').createReadStream('music.wav')
+    stream: "path/to/file.mp3"
 });
 ```
 
