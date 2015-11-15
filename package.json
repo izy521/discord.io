@@ -1,6 +1,6 @@
 {
   "name": "discord.io",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
   "scripts": {
@@ -28,8 +28,6 @@
     "ws": "^0.8.0"
   },
   "optionalDependencies": {
-    "lame": "^1.2.0",
-    "node-opus": "^0.1.0",
-	"wav": "^1.0.0"
+    "node-opus": "^0.1.0"
   }
 }
