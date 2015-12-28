@@ -45,67 +45,45 @@ bot.on("disconnected", function() {
 
 /*Function declaration area*/
 function sendMessages(ID, messageArr, interval) {
-	var len = messageArr.length;
-	var callback;
-	var resArr = [];
+	var callback, resArr = [], len = messageArr.length;
 	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof(interval) !== 'number') interval = 250;
+	if (typeof(interval) !== 'number') interval = 1000;
 	
 	function _sendMessages() {
 		setTimeout(function() {
-			if (messageArr.length > 0) {
+			if (messageArr[0]) {
 				bot.sendMessage({
 					to: ID,
-					message: messageArr[0]
+					message: messageArr.shift()
 				}, function(res) {
 					resArr.push(res);
+					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
-				messageArr.splice(0, 1);
 				_sendMessages();
 			}
 		}, interval);
 	}
 	_sendMessages();
-	
-	var checkInt = setInterval(function() {
-		if (resArr.length === len) {
-			if (typeof(callback) === 'function') {
-				callback(resArr);
-			}
-			clearInterval(checkInt);
-		}
-	}, 0);
 }
 
 function sendFiles(channelID, fileArr, interval) {
-	var len = fileArr.length;
-	var callback;
-	var resArr = [];
+	var callback, resArr = [], len = fileArr.length;
 	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof(interval) !== 'number') interval = 500;
+	if (typeof(interval) !== 'number') interval = 1000;
 	
 	function _sendFiles() {
 		setTimeout(function() {
-			if (fileArr.length > 0) {
+			if (fileArr[0]) {
 				bot.uploadFile({
 					channel: channelID,
-					file: require('fs').createReadStream(fileArr[0])
+					file: require('fs').createReadStream(fileArr.shift())
 				}, function(res) {
 					resArr.push(res);
+					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
-				fileArr.splice(0, 1);
 				_sendFiles();
 			}
 		}, interval);
 	}
 	_sendFiles();
-	
-	var checkInt = setInterval(function() {
-		if (resArr.length === len) {
-			if (typeof(callback) === 'function') {
-				callback(resArr);
-			}
-			clearInterval(checkInt);
-		}
-	}, 0);
 }
