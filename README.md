@@ -1,5 +1,5 @@
 # discord.io
-A low-level library for creating a Discord client from Node.js. [Come join the discussion!](https://discord.gg/0SBTUU1wZTXbhMXV)
+A low-level library for creating a Discord client from Node.js. [Come join the discussion!](https://discord.gg/0MvHMfHcTKVVmIGP)
 
 ### Installation
 `npm install discord.io`
