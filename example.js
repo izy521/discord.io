@@ -75,7 +75,7 @@ function sendFiles(channelID, fileArr, interval) {
 		setTimeout(function() {
 			if (fileArr[0]) {
 				bot.uploadFile({
-					channel: channelID,
+					to: channelID,
 					file: require('fs').createReadStream(fileArr.shift())
 				}, function(res) {
 					resArr.push(res);
