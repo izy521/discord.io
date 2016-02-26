@@ -76,7 +76,7 @@ function sendFiles(channelID, fileArr, interval) {
 			if (fileArr[0]) {
 				bot.uploadFile({
 					to: channelID,
-					file: require('fs').createReadStream(fileArr.shift())
+					file: fileArr.shift()
 				}, function(res) {
 					resArr.push(res);
 					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
