@@ -55,8 +55,12 @@ function sendMessages(ID, messageArr, interval) {
 				bot.sendMessage({
 					to: ID,
 					message: messageArr.shift()
-				}, function(res) {
-					resArr.push(res);
+				}, function(err, res) {
+					if (err) {
+						resArr.push(err);
+					} else {
+						resArr.push(res);
+					}
 					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
 				_sendMessages();
@@ -77,8 +81,12 @@ function sendFiles(channelID, fileArr, interval) {
 				bot.uploadFile({
 					to: channelID,
 					file: fileArr.shift()
-				}, function(res) {
-					resArr.push(res);
+				}, function(err, res) {
+					if (err) {
+						resArr.push(err);
+					} else {
+						resArr.push(res);
+					}
 					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
 				_sendFiles();
