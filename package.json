@@ -25,7 +25,8 @@
   "homepage": "https://github.com/izy521/discord.io#readme",
   "dependencies": {
     "needle": "^1.0.0",
-    "ws": "^0.8.0"
+    "ws": "^0.8.0",
+    "ecma-nacl": "^2.2.0"
   },
   "optionalDependencies": {
     "node-opus": "^0.1.0"
