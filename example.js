@@ -1,15 +1,11 @@
 /*Variable area*/
 var Discordbot = require('discord.io');
 var bot = new Discordbot({
-	email: "",
-	password: "",
+	token: "",
 	autorun: true
 });
 
 /*Event area*/
-bot.on("err", function(error) {
-	console.log(error)
-});
 
 bot.on("ready", function(rawEvent) {
 	console.log("Connected!");
@@ -30,7 +26,7 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 	}
 });
 
-bot.on("presence", function(user, userID, status, rawEvent) {
+bot.on("presence", function(user, userID, status, gameName, rawEvent) {
 	/*console.log(user + " is now: " + status);*/
 });
 
