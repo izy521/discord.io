@@ -2,6 +2,8 @@ Example for using colors:
 
 ```javascript
 bot.editRole({
+	server: "ServerID",
+	role: "RoleID",
 	color: "RED"
 });
 ```
