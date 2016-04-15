@@ -1,5 +1,5 @@
 (function(Discord){
-	var isNode = typeof(window) !== "undefined" && typeof(navigator) !== "undefined" ? false : true;
+	var isNode = typeof(window) !== "undefined" && typeof(navigator) !== "undefined";
 	var Endpoints = (function () {
 		var BASE = "https://discordapp.com/api";
 		return {
