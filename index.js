@@ -404,7 +404,14 @@
 	Discord.Types = {};
 
 	if (isNode) Emitter().apTo(Discord.Client); //So so dirty.
-
+	
+	/*Functions*/
+	function encodeQS(data) {
+    		return Object.keys(data).map(function(key) {
+        		return [key, data[key]].map(encodeURIComponent).join("=");
+    		}).join("&");
+	}
+	
 	/*Prototypes*/
 	function Emitter() {
 		return {
