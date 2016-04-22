@@ -1,6 +1,6 @@
 /*Variable area*/
-var Discordbot = require('discord.io');
-var bot = new Discordbot({
+var DiscordClient = require('discord.io');
+var bot = new DiscordClient({
 	token: "",
 	autorun: true
 });
@@ -18,7 +18,7 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 	console.log("in " + channelID);
 	console.log(message);
 	console.log("----------");
-	
+
 	if (message === "ping") {
 		sendMessages(channelID, ["Pong"]); //Sending a message with our helper function
 	} else if (message === "picture") {
@@ -44,7 +44,7 @@ function sendMessages(ID, messageArr, interval) {
 	var callback, resArr = [], len = messageArr.length;
 	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
 	if (typeof(interval) !== 'number') interval = 1000;
-	
+
 	function _sendMessages() {
 		setTimeout(function() {
 			if (messageArr[0]) {
@@ -70,7 +70,7 @@ function sendFiles(channelID, fileArr, interval) {
 	var callback, resArr = [], len = fileArr.length;
 	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
 	if (typeof(interval) !== 'number') interval = 1000;
-	
+
 	function _sendFiles() {
 		setTimeout(function() {
 			if (fileArr[0]) {
