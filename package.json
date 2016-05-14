@@ -1,6 +1,6 @@
 {
   "name": "discord.io",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
   "scripts": {

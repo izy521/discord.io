@@ -8,13 +8,10 @@ A low-level library for creating a Discord client from Node.js. [Come join the d
 
 ### Example
 ```javascript
-var DiscordClient = require('discord.io');
-var bot = new DiscordClient({
-    autorun: true,
-    email: "",
-    password: "",
-    //OR
-    token: ""
+var Discord = require('discord.io');
+var bot = new Discord.Client({
+    token: "",
+    autorun: true
 });
 
 bot.on('ready', function() {
