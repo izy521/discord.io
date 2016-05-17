@@ -1,19 +1,19 @@
 /*Variable area*/
-var DiscordClient = require('discord.io');
-var bot = new DiscordClient({
+var Discord = require('discord.io');
+var bot = new Discord.Client({
 	token: "",
 	autorun: true
 });
 
 /*Event area*/
 
-bot.on("ready", function(rawEvent) {
+bot.on("ready", function(event) {
 	console.log("Connected!");
 	console.log("Logged in as: ");
 	console.log(bot.username + " - (" + bot.id + ")");
 });
 
-bot.on("message", function(user, userID, channelID, message, rawEvent) {
+bot.on("message", function(user, userID, channelID, message, event) {
 	console.log(user + " - " + userID);
 	console.log("in " + channelID);
 	console.log(message);
@@ -26,15 +26,15 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 	}
 });
 
-bot.on("presence", function(user, userID, status, gameName, rawEvent) {
+bot.on("presence", function(user, userID, status, game, event) {
 	/*console.log(user + " is now: " + status);*/
 });
 
-bot.on("debug", function(rawEvent) {
+bot.on("any", function(event) {
 	/*console.log(rawEvent)*/ //Logs every event
 });
 
-bot.on("disconnected", function() {
+bot.on("disconnect", function() {
 	console.log("Bot disconnected");
 	/*bot.connect()*/ //Auto reconnect
 });
