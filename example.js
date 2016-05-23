@@ -41,8 +41,8 @@ bot.on("disconnect", function() {
 
 /*Function declaration area*/
 function sendMessages(ID, messageArr, interval) {
-	var callback, resArr = [], len = messageArr.length;
-	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	var resArr = [], len = messageArr.length;
+	var callback = typeof(arguments[2]) === 'function' ?  arguments[2] :  arguments[3];
 	if (typeof(interval) !== 'number') interval = 1000;
 
 	function _sendMessages() {
@@ -67,8 +67,8 @@ function sendMessages(ID, messageArr, interval) {
 }
 
 function sendFiles(channelID, fileArr, interval) {
-	var callback, resArr = [], len = fileArr.length;
-	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	var resArr = [], len = fileArr.length;
+	var callback = typeof(arguments[2]) === 'function' ? arguments[2] : arguments[3];
 	if (typeof(interval) !== 'number') interval = 1000;
 
 	function _sendFiles() {
