@@ -1,6 +1,8 @@
 
-<p align="center"><img src="http://i.imgur.com/kFzW7Uo.png"><h1>discord.io</h1></p>
+<p align="center"><img src="http://i.imgur.com/kFzW7Uo.png"></p>
+<h1 align="center">discord.io</h1>
 A small, single-file, fully featured [Discordapp](https://discordapp.com) library for Node.js.
+
 [![Discord](https://discordapp.com/api/servers/66192955777486848/widget.png?style=button)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
 
 ### Installation
