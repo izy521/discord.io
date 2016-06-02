@@ -1,12 +1,15 @@
-# discord.io
+
+<p align="center"><img src="http://i.imgur.com/kFzW7Uo.png"></p>
+<h1 align="center">discord.io</h1>
 A small, single-file, fully featured [Discordapp](https://discordapp.com) library for Node.js.
 
-[![Discord](https://discordapp.com/api/servers/66192955777486848/widget.png?style=banner2)](https://discord.gg/0MvHMfHcTKVVmIGP)
+[![Discord](https://discordapp.com/api/servers/66192955777486848/widget.png?style=button)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
 
 ### Installation
 `npm install discord.io`
 
 ### [Documentation / Github Wiki](https://github.com/izy521/discord.io/wiki)
+[WIP Documentation / Gitbooks](https://www.gitbook.com/book/izy521/discord-io/details)
 
 ### Example
 ```javascript
