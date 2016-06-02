@@ -1,5 +1,5 @@
 # discord.io
-![Logo](https://raw.githubusercontent.com/adryd/discord.io/logo.svg)
+![Logo](https://raw.githubusercontent.com/Adryd/discord.io/master/logo.svg)
 A small, single-file, fully featured [Discordapp](https://discordapp.com) library for Node.js.
 
 [![Discord](https://discordapp.com/api/servers/66192955777486848/widget.png?style=button)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
