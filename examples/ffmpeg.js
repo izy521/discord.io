@@ -2,8 +2,7 @@ var DiscordClient = require('discord.io');
 var spawn = require('child_process').spawn;
 var bot = new DiscordClient({
 	autorun: true,
-	email: "",
-	password: ""
+	token: ""
 });
 
 var voiceChannelID = "",
