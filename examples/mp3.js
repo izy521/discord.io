@@ -7,8 +7,7 @@ var fs = require('fs');
 var spawn = require('child_process').spawn;
 var bot = new DiscordClient({
 	autorun: true,
-	email: "",
-	password: ""
+	token: ""
 });
 
 var voiceChannelID = "",
