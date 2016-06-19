@@ -423,6 +423,4 @@ declare namespace Discord {
   }
 }
 
-declare module 'discord.io' {
-  export = Discord;
-}
+export = Discord;
