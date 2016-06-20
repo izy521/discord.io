@@ -6,7 +6,7 @@ declare namespace Discord {
 
   export type userStatus = "online" | "idle" | "offline";
 
-  export type callbackFunc = (error: cbError, response) => any;
+  export type callbackFunc = (error: cbError, response: any) => void;
 
   export type colors = "DEFAULT" | "AQUA" | "GREEN" | "BLUE" | "PURPLE" | "GOLD" | "ORANGE" | "RED" | "GREY" | "DARKER_GREY" | "NAVY" | "DARK_AQUA" | "DARK_GREEN" | "DARK_BLUE" | "DARK_PURPLE" | "DARK_GOLD" | "DARK_ORANGE" | "DARK_RED" | "DARK_GREY" | "LIGHT_GREY" | "DARK_NAVY";
 
@@ -110,7 +110,7 @@ declare namespace Discord {
   export type createServerOpts = {
     icon: string,
     name: string,
-    region
+    region: region
   }
 
   export type editServerOpts = {
@@ -213,7 +213,7 @@ declare namespace Discord {
   export class Server {
     name: string;
     id: string;
-    region;
+    region: region;
     owner_id: string;
     joined_at: string;
     large: boolean;
@@ -308,98 +308,98 @@ declare namespace Discord {
 
     // EVENTS
     // TODO: specify callback parameters
-    on(eventName: string, callback: Function)
+    on(eventName: string, callback: Function): void
 
     /**
      * CLIENT
      */
     // Connection
-    connect()
-    disconnect()
+    connect(): void
+    disconnect(): void
 
     // User Information
-    editUserInfo(options: editUserInfoOpts, callback?: callbackFunc)
-    setPresence(options: setPresenceOpts)
-    getOauthInfo(callback: callbackFunc)
-    getAccountSettings(callback: callbackFunc)
+    editUserInfo(options: editUserInfoOpts, callback?: callbackFunc): void
+    setPresence(options: setPresenceOpts): void
+    getOauthInfo(callback: callbackFunc): void
+    getAccountSettings(callback: callbackFunc): void
 
     // Miscellaneous
-    getOfflineUsers(callback: Function)
-    fixMessage(message: string)
-    setGlobalRequestDelay(delay: number)
+    getOfflineUsers(callback: Function): void
+    fixMessage(message: string): void
+    setGlobalRequestDelay(delay: number): void
 
     /**
      * SERVERS
      */
-    createServer(options: createServerOpts, callback?: callbackFunc)
-    editServer(options: editServerOpts, callback?: callbackFunc)
+    createServer(options: createServerOpts, callback?: callbackFunc): void
+    editServer(options: editServerOpts, callback?: callbackFunc): void
 
     // 4 below not in gitbook
-    deleteServer(channelID: string, callback?: callbackFunc)
-    leaveServer(channelID: string, callback?: callbackFunc)
-    transferOwnership(options: Object, callback?: callbackFunc)
+    deleteServer(channelID: string, callback?: callbackFunc): void
+    leaveServer(channelID: string, callback?: callbackFunc): void
+    transferOwnership(options: Object, callback?: callbackFunc): void
 
-    listBans(options: Object, callback?: callbackFunc)
+    listBans(options: Object, callback?: callbackFunc): void
 
     /**
      * CHANNELS
      */
     // 3 below not in gitbook
-    createChannel(options: createChannelOpts, callback?: callbackFunc)
-    deleteChannel(channelID: string, callback?: callbackFunc)
-    editChannelInfo(options: editChannelInfoOpts, callback?: callbackFunc)
+    createChannel(options: createChannelOpts, callback?: callbackFunc): void
+    deleteChannel(channelID: string, callback?: callbackFunc): void
+    editChannelInfo(options: editChannelInfoOpts, callback?: callbackFunc): void
 
-    sendMessage(options: sendMessageOpts, callback?: callbackFunc)
-    uploadFile(options: uploadFileOpts, callback?: callbackFunc)
-    getMessages(options: getMessagesOpts, callback?: callbackFunc)
-    editMessage(options: editMessageOpts, callback?: callbackFunc)
-    simulateTyping(channelID: string, callback?: callbackFunc)
-    deleteMessages(options: deleteMessagesOpts, callback?: callbackFunc)
-    deleteMessage(options: deleteMessageOpts, callback?: callbackFunc)
+    sendMessage(options: sendMessageOpts, callback?: callbackFunc): void
+    uploadFile(options: uploadFileOpts, callback?: callbackFunc): void
+    getMessages(options: getMessagesOpts, callback?: callbackFunc): void
+    editMessage(options: editMessageOpts, callback?: callbackFunc): void
+    simulateTyping(channelID: string, callback?: callbackFunc): void
+    deleteMessages(options: deleteMessagesOpts, callback?: callbackFunc): void
+    deleteMessage(options: deleteMessageOpts, callback?: callbackFunc): void
 
     /**
      * VOICE CHANNELS
      */
-    joinVoiceChannel(channelID: string, callback?: callbackFunc)
-    leaveVoiceChannelVoiceChannel(channelID: string, callback?: callbackFunc)
-    getAudioContext(channelID: string, callback: Function)
+    joinVoiceChannel(channelID: string, callback?: callbackFunc): void
+    leaveVoiceChannelVoiceChannel(channelID: string, callback?: callbackFunc): void
+    getAudioContext(channelID: string, callback: Function): void
 
     /**
      * USERS
      */
-    createDMChannel(userID: string, callback?: callbackFunc)
-    addToRole(options: addAndRemoveFromRole, callback?: callbackFunc)
-    removeFromRole(options: addAndRemoveFromRole, callback?: callbackFunc)
-    moveUserTo(options: moveUserToOpts)
+    createDMChannel(userID: string, callback?: callbackFunc): void
+    addToRole(options: addAndRemoveFromRole, callback?: callbackFunc): void
+    removeFromRole(options: addAndRemoveFromRole, callback?: callbackFunc): void
+    moveUserTo(options: moveUserToOpts): void
 
-    kick(options: actionsOnUserOpts, callback?: callbackFunc)
-    ban(options: banUserOpts, callback?: callbackFunc)
-    unban(options: actionsOnUserOpts, callback?: callbackFunc)
-    mute(options: actionsOnUserOpts, callback?: callbackFunc)
-    unmute(options: actionsOnUserOpts, callback?: callbackFunc)
-    deafen(options: actionsOnUserOpts, callback?: callbackFunc)
-    undeafen(options: actionsOnUserOpts, callback?: callbackFunc)
+    kick(options: actionsOnUserOpts, callback?: callbackFunc): void
+    ban(options: banUserOpts, callback?: callbackFunc): void
+    unban(options: actionsOnUserOpts, callback?: callbackFunc): void
+    mute(options: actionsOnUserOpts, callback?: callbackFunc): void
+    unmute(options: actionsOnUserOpts, callback?: callbackFunc): void
+    deafen(options: actionsOnUserOpts, callback?: callbackFunc): void
+    undeafen(options: actionsOnUserOpts, callback?: callbackFunc): void
 
     // not in gitbook
-    editNickname(options: editNicknameOpts, callback?: callbackFunc)
+    editNickname(options: editNicknameOpts, callback?: callbackFunc): void
 
     // Below is not is gitbook
     /**
     * ROLES
     */
-    createRole(serverID: string, callback?: (error: cbError, response: Role) => any)
-    editRole(options: editRoleOpts, callback?: callbackFunc)
-    deleteRole(options: deleteRoleOpts, callback?: callbackFunc)
+    createRole(serverID: string, callback?: (error: cbError, response: Role) => any): void
+    editRole(options: editRoleOpts, callback?: callbackFunc): void
+    deleteRole(options: deleteRoleOpts, callback?: callbackFunc): void
 
     /**
      * INVITES
      */
-    acceptInvite(inviteCode: string, callback?: callbackFunc)
-    createInvite(options: createInviteOpts, callback: Function)
-    deleteInvite(inviteCode: string, callback?: callbackFunc)
-    queryInvite(inviteCode: string, callback: Function)
-    listServerInvites(serverID: string, callback: Function)
-    listChannelInvites(channelID: string, callback: Function)
+    acceptInvite(inviteCode: string, callback?: callbackFunc): void
+    createInvite(options: createInviteOpts, callback: Function): void
+    deleteInvite(inviteCode: string, callback?: callbackFunc): void
+    queryInvite(inviteCode: string, callback: Function): void
+    listServerInvites(serverID: string, callback: Function): void
+    listChannelInvites(channelID: string, callback: Function): void
   }
 
   export class OAuth {
