@@ -8,8 +8,7 @@ A small, single-file, fully featured [Discordapp](https://discordapp.com) librar
 ### Installation
 `npm install discord.io`
 
-### [Documentation / Github Wiki](https://github.com/izy521/discord.io/wiki)
-[WIP Documentation / Gitbooks](https://www.gitbook.com/book/izy521/discord-io/details)
+### [Documentation / Gitbooks](https://www.gitbook.com/book/izy521/discord-io/details)
 
 ### Example
 ```javascript
