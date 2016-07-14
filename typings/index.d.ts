@@ -8,6 +8,47 @@ declare namespace Discord {
 
   export type callbackFunc = (error: cbError, response: any) => void;
 
+  export type WebSocketEvent = {
+    d: any;
+    op: number;
+    s: number;
+    t: string;
+  };
+  // event callbacks
+  export type readyCallback = (event: WebSocketEvent) => void;
+  export type messageCallback = (user: string, userID: string, channelID: string, mesage: string, event: WebSocketEvent) => void;
+  export type GameObject = {
+    name: string;
+    type: number;
+    url?: string;
+  };
+  export type presenceCallback = (user: string, userID: string, status: string, game: GameObject, event: WebSocketEvent) => void;
+  export type anyCallback = (event: WebSocketEvent) => void;
+  export type disconnectCallback = (errMsg: string, code: number) => void;
+  // WebSocket event callbacks
+  // TODO: add missing types
+  export type messageCreateCallback = (username: any, userID: any, channelID: any, message: any, event: WebSocketEvent) => void;
+  export type messageUpdate1Callback = (newMsg: any, event: WebSocketEvent) => void;
+  export type messageUpdate2Callback = (oldMsg: any, newMsg: any, event: WebSocketEvent) => void;
+  export type presenceUpdateCallback = (event: WebSocketEvent) => void;
+  export type userUpdateCallback = (event: WebSocketEvent) => void;
+  export type userSettingsUpdateCallback = (event: WebSocketEvent) => void;
+  export type guildCreateCallback = (server: any, event: WebSocketEvent) => void;
+  export type guildUpdateCallback = (oldServer: any, newServer: any, event: WebSocketEvent) => void;
+  export type guildDeleteCallback = (server: any, event: WebSocketEvent) => void;
+  export type guildMemberAddCallback = (member: any, event: WebSocketEvent) => void;
+  export type guildMemberUpdateCallback = (oldMember: any, newMember: any, event: WebSocketEvent) => void;
+  export type guildMemberRemoveCallback = (member: any, event: WebSocketEvent) => void;
+  export type guildRoleCreateCallback = (role: any, event: WebSocketEvent) => void;
+  export type guildRoleUpdateCallback = (oldRole: any, newRole: any, event: WebSocketEvent) => void;
+  export type guildRoleDeleteCallback = (role: any, event: WebSocketEvent) => void;
+  export type channelCreateCallback = (channel: any, event: WebSocketEvent) => void;
+  export type channelUpdateCallback = (oldChannel: any, newChannel: any, event: WebSocketEvent) => void;
+  export type channelDeleteCallback = (channel: any, event: WebSocketEvent) => void;
+  export type voiceStateUpdateCallback = (event: WebSocketEvent) => void;
+  export type voiceServerUpdateCallback = (event: WebSocketEvent) => void;
+  export type guildMembersChunkCallback = (event: WebSocketEvent) => void;
+
   export type colors = "DEFAULT" | "AQUA" | "GREEN" | "BLUE" | "PURPLE" | "GOLD" | "ORANGE" | "RED" | "GREY" | "DARKER_GREY" | "NAVY" | "DARK_AQUA" | "DARK_GREEN" | "DARK_BLUE" | "DARK_PURPLE" | "DARK_GOLD" | "DARK_ORANGE" | "DARK_RED" | "DARK_GREY" | "LIGHT_GREY" | "DARK_NAVY";
 
   export type channelType = "voice" | "text";
@@ -307,7 +348,33 @@ declare namespace Discord {
     })
 
     // EVENTS
-    // TODO: specify callback parameters
+    on(eventName: "ready", callback: readyCallback): void
+    on(eventName: "message", callback: messageCallback): void
+    on(eventName: "presence", callback: presenceCallback): void
+    on(eventName: "any", callback: anyCallback): void
+    on(eventName: "disconnect", callback: disconnectCallback): void
+    // WebSocket events
+    on(eventName: "messageCreate", callback: messageCreateCallback): void
+    on(eventName: "messageUpdate", callback: messageUpdate1Callback): void
+    on(eventName: "messageUpdate", callback: messageUpdate2Callback): void
+    on(eventName: "presenceUpdate", callback: presenceUpdateCallback): void
+    on(eventName: "userUpdate", callback: userUpdateCallback): void
+    on(eventName: "userSettingsUpdate", callback: userSettingsUpdateCallback): void
+    on(eventName: "guildCreate", callback: guildCreateCallback): void
+    on(eventName: "guildUpdate", callback: guildUpdateCallback): void
+    on(eventName: "guildDelete", callback: guildDeleteCallback): void
+    on(eventName: "guildMemberAdd", callback: guildMemberAddCallback): void
+    on(eventName: "guildMemberUpdate", callback: guildMemberUpdateCallback): void
+    on(eventName: "guildMemberRemove", callback: guildMemberRemoveCallback): void
+    on(eventName: "guildRoleCreate", callback: guildRoleCreateCallback): void
+    on(eventName: "guildRoleUpdate", callback: guildRoleUpdateCallback): void
+    on(eventName: "guildRoleDelete", callback: guildRoleDeleteCallback): void
+    on(eventName: "channelCreate", callback: channelCreateCallback): void
+    on(eventName: "channelUpdate", callback: channelUpdateCallback): void
+    on(eventName: "channelDelete", callback: channelDeleteCallback): void
+    on(eventName: "voiceStateUpdate", callback: voiceStateUpdateCallback): void
+    on(eventName: "voiceServerUpdate", callback: voiceServerUpdateCallback): void
+    on(eventName: "guildMembersChunk", callback: guildMembersChunkCallback): void
     on(eventName: string, callback: Function): void
 
     /**
@@ -383,7 +450,7 @@ declare namespace Discord {
     // not in gitbook
     editNickname(options: editNicknameOpts, callback?: callbackFunc): void
 
-    // Below is not is gitbook
+    // Below is not in gitbook
     /**
     * ROLES
     */
