@@ -3,6 +3,7 @@
 #include "opus-1.1.3/include/opus.h"
 
 #define BITRATE 96000
+#define FRAME_SIZE 960
 #define APPLICATION OPUS_APPLICATION_AUDIO
 
 using namespace emscripten;
@@ -16,8 +17,6 @@ class OpusEncoder {
 
 		OpusEncoder* encoder;
 		OpusDecoder* decoder;
-
-		int frame_size;
 	
 	public:
 		opus_int32 getMDB() const { return _MAX_DATA_BYTES; }
@@ -34,7 +33,6 @@ class OpusEncoder {
 			if ( decoder_error != OPUS_OK ) {}
 
 			ctl_error = opus_encoder_ctl( encoder, OPUS_SET_BITRATE( BITRATE ) );
-			frame_size = SAMPLE_RATE * 0.04;
 		}
 		~OpusEncoder() {
 			opus_encoder_destroy( encoder );
@@ -51,7 +49,7 @@ class OpusEncoder {
 				pcm[i] = input[2*i+1]<<8|input[2*i];
 			}
 
-			return opus_encode( encoder, pcm, frame_size, output, _MAX_DATA_BYTES );
+			return opus_encode( encoder, pcm, FRAME_SIZE, output, _MAX_DATA_BYTES );
 		}
 		//TODO: Decode
 };

@@ -1,5 +1,5 @@
 var Module = require('./CJOpus.js');
-Object.defineProperty(Module, '_name', { value: "CJOpus"});
+Object.defineProperty(Module.OpusEncoder, '_name', { value: "CJOpus"});
 
 Module.OpusEncoder.prototype.encode = function(buffer) {
 	var bufferBytes, bufferPtr;
