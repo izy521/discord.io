@@ -1,4 +1,5 @@
-var Module = require('./CJOpus.js');
+var path = require('path');
+var Module = require( path.normalize( path.join( __dirname, './CJOpus.js') ) );
 Object.defineProperty(Module.OpusEncoder, '_name', { value: "CJOpus"});
 
 Module.OpusEncoder.prototype.encode = function(buffer) {
