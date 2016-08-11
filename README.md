@@ -3,7 +3,7 @@
 <h1 align="center">discord.io</h1>
 A small, single-file, fully featured [Discordapp](https://discordapp.com) library for Node.js and browsers.
 
-[![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png?style=button)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
+[![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
 
 ### Installation
 `npm install discord.io`
