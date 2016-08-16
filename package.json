@@ -1,9 +1,8 @@
 {
   "name": "discord.io",
-  "version": "1.13.4",
+  "version": "2.0.0",
   "description": "JavaScript interface for Discord.",
   "main": "./lib/index.js",
-  "typings": "./typings/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
