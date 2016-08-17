@@ -1,11 +1,11 @@
 /*A few users have been complaining that FFMPEG/AVCONV is cutting off their (messed up) audio MP3s incorrectly.
   This seems to happen on the later FFMPEG/AVCONV. To get around this, you can use the `lame` module from Node
   and send it to `discord.io`, as you would with spawning ffmpeg in your script. Or fix your MP3 files.*/
-var DiscordClient = require('discord.io');
+var Discord = require('discord.io');
 var Lame = require('lame');
 var fs = require('fs');
 var spawn = require('child_process').spawn;
-var bot = new DiscordClient({
+var bot = new Discord.Client({
 	autorun: true,
 	token: ""
 });
@@ -21,7 +21,7 @@ bot.on('ready', function() {
 	});
 });
 
-function handleStream(stream) {
+function handleStream(error, stream) {
 	playMP3(stream, file);
 }
 

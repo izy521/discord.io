@@ -1,6 +1,6 @@
-var DiscordClient = require('discord.io');
+var Discord = require('discord.io');
 var spawn = require('child_process').spawn;
-var bot = new DiscordClient({
+var bot = new Discord.Client({
 	autorun: true,
 	token: ""
 });
@@ -16,7 +16,7 @@ bot.on('ready', function() {
 	});
 });
 
-function handleStream(stream) {
+function handleStream(error, stream) {
 	var ffmpeg = spawn('ffmpeg' , [ //Or 'avconv', if you have it instead
 		'-i', file,
 		'-f', 's16le',
