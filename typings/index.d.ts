@@ -205,13 +205,13 @@ declare type setPresenceOpts = {
 
 declare type addAndRemoveFromRole = {
   serverID: string,
-  user: string,
+  userID: string,
   role: string
 }
 
 declare type moveUserToOpts = {
   serverID: string,
-  user: string,
+  userID: string,
   channelID: string
 }
 
