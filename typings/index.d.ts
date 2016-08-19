@@ -1,257 +1,292 @@
-declare namespace Discord {
-  /**
-  * Misc argument types
-  */
-  export type region = "brazil" | "frankfurt" | "amsterdam" | "london" | "singapore" | "us-east" | "us-central" | "us-south" | "us-west" | "sydney";
+/**
+ * Misc argument types
+ */
+declare type region = "brazil" | "frankfurt" | "amsterdam" | "london" | "singapore" | "us-east" | "us-central" | "us-south" | "us-west" | "sydney";
 
-  export type userStatus = "online" | "idle" | "offline";
+declare type userStatus = "online" | "idle" | "offline";
 
-  export type callbackFunc = (error: cbError, response: any) => void;
+declare type callbackFunc = (error: cbError, response: any) => void;
 
-  export type WebSocketEvent = {
-    d: any;
-    op: number;
-    s: number;
-    t: string;
-  };
-  // event callbacks
-  export type readyCallback = (event: WebSocketEvent) => void;
-  export type messageCallback = (user: string, userID: string, channelID: string, mesage: string, event: WebSocketEvent) => void;
-  export type GameObject = {
-    name: string;
-    type: number;
-    url?: string;
-  };
-  export type presenceCallback = (user: string, userID: string, status: string, game: GameObject, event: WebSocketEvent) => void;
-  export type anyCallback = (event: WebSocketEvent) => void;
-  export type disconnectCallback = (errMsg: string, code: number) => void;
-  // WebSocket event callbacks
-  // TODO: add missing types
-  export type messageCreateCallback = (username: any, userID: any, channelID: any, message: any, event: WebSocketEvent) => void;
-  export type messageUpdate1Callback = (newMsg: any, event: WebSocketEvent) => void;
-  export type messageUpdate2Callback = (oldMsg: any, newMsg: any, event: WebSocketEvent) => void;
-  export type presenceUpdateCallback = (event: WebSocketEvent) => void;
-  export type userUpdateCallback = (event: WebSocketEvent) => void;
-  export type userSettingsUpdateCallback = (event: WebSocketEvent) => void;
-  export type guildCreateCallback = (server: any, event: WebSocketEvent) => void;
-  export type guildUpdateCallback = (oldServer: any, newServer: any, event: WebSocketEvent) => void;
-  export type guildDeleteCallback = (server: any, event: WebSocketEvent) => void;
-  export type guildMemberAddCallback = (member: any, event: WebSocketEvent) => void;
-  export type guildMemberUpdateCallback = (oldMember: any, newMember: any, event: WebSocketEvent) => void;
-  export type guildMemberRemoveCallback = (member: any, event: WebSocketEvent) => void;
-  export type guildRoleCreateCallback = (role: any, event: WebSocketEvent) => void;
-  export type guildRoleUpdateCallback = (oldRole: any, newRole: any, event: WebSocketEvent) => void;
-  export type guildRoleDeleteCallback = (role: any, event: WebSocketEvent) => void;
-  export type channelCreateCallback = (channel: any, event: WebSocketEvent) => void;
-  export type channelUpdateCallback = (oldChannel: any, newChannel: any, event: WebSocketEvent) => void;
-  export type channelDeleteCallback = (channel: any, event: WebSocketEvent) => void;
-  export type voiceStateUpdateCallback = (event: WebSocketEvent) => void;
-  export type voiceServerUpdateCallback = (event: WebSocketEvent) => void;
-  export type guildMembersChunkCallback = (event: WebSocketEvent) => void;
+declare type WebSocketEvent = {
+  d: any;
+  op: number;
+  s: number;
+  t: string;
+};
 
-  export type colors = "DEFAULT" | "AQUA" | "GREEN" | "BLUE" | "PURPLE" | "GOLD" | "ORANGE" | "RED" | "GREY" | "DARKER_GREY" | "NAVY" | "DARK_AQUA" | "DARK_GREEN" | "DARK_BLUE" | "DARK_PURPLE" | "DARK_GOLD" | "DARK_ORANGE" | "DARK_RED" | "DARK_GREY" | "LIGHT_GREY" | "DARK_NAVY";
+declare type game = {
+  name: string;
+  type: number;
+  url?: string;
+};
 
-  export type channelType = "voice" | "text";
+declare type colors = "DEFAULT" | "AQUA" | "GREEN" | "BLUE" | "PURPLE" | "GOLD" | "ORANGE" | "RED" | "GREY" | "DARKER_GREY" | "NAVY" | "DARK_AQUA" | "DARK_GREEN" | "DARK_BLUE" | "DARK_PURPLE" | "DARK_GOLD" | "DARK_ORANGE" | "DARK_RED" | "DARK_GREY" | "LIGHT_GREY" | "DARK_NAVY";
 
-  export interface cbError {
+declare type channelType = "voice" | "text";
+
+
+/**
+ * Events callbacks
+ */
+declare type readyCallback = (event: WebSocketEvent) => void;
+declare type messageCallback = (user: string, userID: string, channelID: string, mesage: string, event: WebSocketEvent) => void;
+declare type presenceCallback = (user: string, userID: string, status: string, game: game, event: WebSocketEvent) => void;
+declare type anyCallback = (event: WebSocketEvent) => void;
+declare type disconnectCallback = (errMsg: string, code: number) => void;
+
+/*
+ *WebSocket event callbacks
+ */
+declare type messageCreateCallback = (username: any, userID: any, channelID: any, message: any, event: WebSocketEvent) => void;
+declare type messageUpdate1Callback = (newMsg: any, event: WebSocketEvent) => void;
+declare type messageUpdate2Callback = (oldMsg: any, newMsg: any, event: WebSocketEvent) => void;
+declare type presenceUpdateCallback = (event: WebSocketEvent) => void;
+declare type userUpdateCallback = (event: WebSocketEvent) => void;
+declare type userSettingsUpdateCallback = (event: WebSocketEvent) => void;
+declare type guildCreateCallback = (server: any, event: WebSocketEvent) => void;
+declare type guildUpdateCallback = (oldServer: any, newServer: any, event: WebSocketEvent) => void;
+declare type guildDeleteCallback = (server: any, event: WebSocketEvent) => void;
+declare type guildMemberAddCallback = (member: any, event: WebSocketEvent) => void;
+declare type guildMemberUpdateCallback = (oldMember: any, newMember: any, event: WebSocketEvent) => void;
+declare type guildMemberRemoveCallback = (member: any, event: WebSocketEvent) => void;
+declare type guildRoleCreateCallback = (role: any, event: WebSocketEvent) => void;
+declare type guildRoleUpdateCallback = (oldRole: any, newRole: any, event: WebSocketEvent) => void;
+declare type guildRoleDeleteCallback = (role: any, event: WebSocketEvent) => void;
+declare type channelCreateCallback = (channel: any, event: WebSocketEvent) => void;
+declare type channelUpdateCallback = (oldChannel: any, newChannel: any, event: WebSocketEvent) => void;
+declare type channelDeleteCallback = (channel: any, event: WebSocketEvent) => void;
+declare type voiceStateUpdateCallback = (event: WebSocketEvent) => void;
+declare type voiceServerUpdateCallback = (event: WebSocketEvent) => void;
+declare type guildMembersChunkCallback = (event: WebSocketEvent) => void;
+
+/**
+ * Callbacks interface
+ */
+declare interface cbError {
 		message?: string,
 		statusCode?: string,
 		statusMessage?: string,
 		response?: string
-	}
+}
 
-  export interface cbRes {
+declare interface cbRes {
 
-  }
+}
 
+/**
+ * Collections types as TypeScript doesn't support them
+ */
+declare type ServerCollection = { [id: string]: Discord.Server };
+declare type ChannelCollection = { [id: string]: Discord.Channel };
+declare type UserCollection = { [id: string]: Discord.User };
+declare type DMChannelCollection = { [id: string]: Discord.DMChannel };
+declare type RoleCollection = { [id: string]: Discord.Role };
+declare type MemberCollection = { [id: string]: Discord.Member };
 
-  /**
-   * Collections types as TypeScript doesn't support them
-   */
-  export type ServerCollection = { [id: string]: Server };
-  export type ChannelCollection = { [id: string]: Channel };
-  export type UserCollection = { [id: string]: User };
-  export type DMChannelCollection = { [id: string]: DMChannel };
-  export type RoleCollection = { [id: string]: Role };
-  export type MemberCollection = { [id: string]: Member };
+/**
+ * Permissions as boolean mixin (used in Role)
+ * Just for autocompletion
+ */
+declare interface permissions {
+  GENERAL_CREATE_INSTANT_INVITE?: boolean;
+  GENERAL_KICK_MEMBERS?: boolean;
+  GENERAL_BAN_MEMBERS?: boolean;
+  GENERAL_ADMINISTRATOR?: boolean;
+  GENERAL_MANAGE_CHANNELS?: boolean;
+  GENERAL_MANAGE_GUILD?: boolean;
+  GENERAL_MANAGE_ROLES?: boolean;
+  GENERAL_MANAGE_NICKNAMES?: boolean;
+  GENERAL_CHANGE_NICKNAME?: boolean;
 
-  /**
-   * Permissions as boolean mixin (used in Role)
-   * Just for autocompletion these are computed properties
-   */
-  export interface permissions {
-    GENERAL_CREATE_INSTANT_INVITE?: boolean;
-    GENERAL_KICK_MEMBERS?: boolean;
-    GENERAL_BAN_MEMBERS?: boolean;
-    GENERAL_ADMINISTRATOR?: boolean;
-    GENERAL_MANAGE_CHANNELS?: boolean;
-    GENERAL_MANAGE_GUILD?: boolean;
-    GENERAL_MANAGE_ROLES?: boolean;
-    GENERAL_MANAGE_NICKNAMES?: boolean;
-    GENERAL_CHANGE_NICKNAME?: boolean;
+  TEXT_READ_MESSAGES?: boolean;
+  TEXT_SEND_MESSAGES?: boolean;
+  TEXT_SEND_TTS_MESSAGE?: boolean;
+  TEXT_MANAGE_MESSAGES?: boolean;
+  TEXT_EMBED_LINKS?: boolean;
+  TEXT_ATTACH_FILES?: boolean;
+  TEXT_READ_MESSAGE_HISTORY?: boolean;
+  TEXT_MENTION_EVERYONE?: boolean;
 
-    TEXT_READ_MESSAGES?: boolean;
-    TEXT_SEND_MESSAGES?: boolean;
-    TEXT_SEND_TTS_MESSAGE?: boolean;
-    TEXT_MANAGE_MESSAGES?: boolean;
-    TEXT_EMBED_LINKS?: boolean;
-    TEXT_ATTACH_FILES?: boolean;
-    TEXT_READ_MESSAGE_HISTORY?: boolean;
-    TEXT_MENTION_EVERYONE?: boolean;
+  VOICE_CONNECT?: boolean;
+  VOICE_SPEAK?: boolean;
+  VOICE_MUTE_MEMBERS?: boolean;
+  VOICE_DEAFEN_MEMBERS?: boolean;
+  VOICE_MOVE_MEMBERS?: boolean;
+  VOICE_USE_VAD?: boolean;
+}
 
-    VOICE_CONNECT?: boolean;
-    VOICE_SPEAK?: boolean;
-    VOICE_MUTE_MEMBERS?: boolean;
-    VOICE_DEAFEN_MEMBERS?: boolean;
-    VOICE_MOVE_MEMBERS?: boolean;
-    VOICE_USE_VAD?: boolean;
-  }
+/**
+ * METHODS OPTIONS TYPES
+ */
+declare type sendMessageOpts = {
+  to: string,
+  message: string,
+  tts?: boolean,
+  nonce?: string,
+  typing?: boolean
+}
 
-  /**
-   * METHODS OPTIONS TYPES
-   */
-  export type sendMessageOpts = {
-    to: string,
-    message: string,
-    tts?: boolean,
-    nonce?: string,
-    typing?: boolean
-  }
+declare type uploadFileOpts = {
+  to: string,
+  file: string,
+  filename?: string,
+  message?: string
+}
 
-  export type uploadFileOpts = {
-    to: string,
-    file: string,
-    filename?: string,
-    message?: string
-  }
+declare type getMessageOpts = {
+  channelID: string,
+  messageID: string
+}
 
-  export type getMessagesOpts = {
-    channel: string,
-    before?: string,
-    after?: string,
-    limit?: number
-  }
+declare type getMessagesOpts = {
+  channelID: string,
+  before?: string,
+  after?: string,
+  limit?: number
+}
 
-  export type editMessageOpts = {
-    channel: string,
-    messageID: string,
-    message: string
-  }
+declare type editMessageOpts = {
+  channelID: string,
+  messageID: string,
+  message: string
+}
 
-  export type deleteMessagesOpts = {
-    channel: string,
-    messageIDs: string[]
-  }
+declare type deleteMessagesOpts = {
+  channelID: string,
+  messageIDs: string[]
+}
 
-  export type deleteMessageOpts = {
-    channel: string,
-    messageID: string
-  }
+declare type deleteMessageOpts = {
+  channelID: string,
+  messageID: string
+}
 
-  export type createServerOpts = {
-    icon: string,
-    name: string,
-    region: region
-  }
+declare type pinMessageOpts = {
+  channelID: string,
+  messageID: string
+}
 
-  export type editServerOpts = {
-    serverID: string,
-    name: string,
-    icon: string,
-    region: region,
-    afk_channel_id: string,
-    afk_timeout: number
-  }
+declare type getPinnedMessagesOpts = {
+  channelID: string
+}
 
-  export type editUserInfoOpts = {
-    avatar: string,
-    email: string,
-    password: string,
-    new_password: string,
-    username: string
-  }
+declare type deletePinnedMessageOpts = {
+  channelID: string,
+  messageID: string
+}
 
-  export type setPresenceOpts = {
-    idle_since: any,
-    game: string,
-    type: number,
-    url: string
-  }
+declare type createServerOpts = {
+  icon: string,
+  name: string,
+  region: region
+}
 
-  export type addAndRemoveFromRole = {
-    server: string,
-    user: string,
-    role: string
-  }
+declare type editServerOpts = {
+  serverID: string,
+  name: string,
+  icon: string,
+  region: region,
+  afk_channel_id: string,
+  afk_timeout: number
+}
 
-  export type moveUserToOpts = {
-    server: string,
-    user: string,
-    channel: string
-  }
+declare type editUserInfoOpts = {
+  avatar: string,
+  username: string
+  email: string,
+  password: string,
+  new_password: string,
+}
 
-  export type actionsOnUserOpts = {
-    channel: string,
-    target: string
-  }
+declare type setPresenceOpts = {
+  idle_since: any,
+  game: game
+}
 
-  export type banUserOpts = {
-    channel: string,
-    target: string,
-    lastDays?: number
-  }
+declare type addAndRemoveFromRole = {
+  serverID: string,
+  user: string,
+  role: string
+}
 
-  export type createChannelOpts = {
-    server: string,
-    type: channelType,
-    name: string
-  }
+declare type moveUserToOpts = {
+  serverID: string,
+  user: string,
+  channelID: string
+}
 
-  export type editChannelInfoOpts = {
-    channel: string,
-    name?: string,
-    position?: number,
-    topic?: string,
-    bitrate?: string
-  }
+declare type actionsOnUserOpts = {
+  channelID: string,
+  target: string
+}
 
-  export type createInviteOpts = {
-    channel: string,
-    max_users: number,
-    max_age: number,
-    temporary: boolean,
-    xkcdpass: boolean
-  }
+declare type banUserOpts = {
+  channelID: string,
+  target: string,
+  lastDays?: number
+}
 
-  export type editRoleOpts = {
-    server: string,
-    role: string,
-    name: string,
-    hoist: boolean,
-    permissions: permissions,
-    color: colors
-  }
+declare type createChannelOpts = {
+  serverID: string,
+  type: channelType,
+  name: string
+}
 
-  export type deleteRoleOpts = {
-    server: string,
-    role: string
-  }
+declare type editChannelInfoOpts = {
+  channelID: string,
+  name?: string,
+  position?: number,
+  topic?: string,
+  bitrate?: string
+}
 
-  export type editNicknameOpts = {
-    nick: string,
-    serverID: string,
-    userID: string
-  }
+declare type createInviteOpts = {
+  channelID: string,
+  max_users: number,
+  max_age: number,
+  temporary: boolean,
+  xkcdpass: boolean
+}
 
-  /**
-   * CLASSES
-   */
-  export class Ressource {
-    id: string;
-    creation_time: number;
-  }
+declare type editRoleOpts = {
+  serverID: string,
+  role: string,
+  name: string,
+  hoist: boolean,
+  permissions: permissions,
+  color: colors
+}
 
-  export class Server {
+declare type deleteRoleOpts = {
+  serverID: string,
+  role: string
+}
+
+declare type editNicknameOpts = {
+  nick: string,
+  serverID: string,
+  userID: string
+}
+
+declare type editChannelPermissionsOpts = {
+  channelID: string,
+  userID: string,
+  roleID: string,
+  allow: Discord.Permissions[],
+  deny: Discord.Permissions[],
+  default: Discord.Permissions[]
+}
+
+/**
+ * CLASSES
+ */
+declare class Resource {
+  id: string;
+  creation_time: number;
+}
+
+declare namespace Discord {
+  export class Server extends Resource {
     name: string;
     id: string;
     region: region;
@@ -275,25 +310,24 @@ declare namespace Discord {
     default_message_notifications: number;
   }
 
-  export class Channel {
+  export class Channel extends Resource {
     name: string;
     id: string;
     guild_id: string;
     type: string;
     topic: string;
     position: number;
-    permission_overwrites: Object[];
     last_message_id: string;
     members: Object;
   }
 
-  export class DMChannel {
+  export class DMChannel extends Resource {
     recipient: Object;
     last_message_id: string;
     id: string;
   }
 
-  export class User {
+  export class User extends Resource {
     username: string;
     id: string;
     discriminator: number;
@@ -302,7 +336,7 @@ declare namespace Discord {
     game: Object;
   }
 
-  export class Member {
+  export class Member extends Resource {
     id: string;
     roles: string[];
     mute: boolean;
@@ -312,7 +346,7 @@ declare namespace Discord {
     voice_channel_id: string;
   }
 
-  export class Role implements permissions {
+  export class Role extends Resource {
     name: string;
     id: string;
     position: number;
@@ -393,52 +427,50 @@ declare namespace Discord {
     // Miscellaneous
     getOfflineUsers(callback: Function): void
     fixMessage(message: string): void
-    setGlobalRequestDelay(delay: number): void
 
     /**
      * SERVERS
      */
     createServer(options: createServerOpts, callback?: callbackFunc): void
     editServer(options: editServerOpts, callback?: callbackFunc): void
-
-    // 4 below not in gitbook
-    deleteServer(channelID: string, callback?: callbackFunc): void
     leaveServer(channelID: string, callback?: callbackFunc): void
+    deleteServer(channelID: string, callback?: callbackFunc): void
     transferOwnership(options: Object, callback?: callbackFunc): void
-
-    listBans(options: Object, callback?: callbackFunc): void
+    acceptInvite(inviteCode: string, callback?: callbackFunc): void
+    createInvite(options: createInviteOpts, callback: Function): void
+    deleteInvite(inviteCode: string, callback?: callbackFunc): void
+    queryInvite(inviteCode: string, callback: Function): void
 
     /**
      * CHANNELS
      */
-    // 3 below not in gitbook
-    createChannel(options: createChannelOpts, callback?: callbackFunc): void
-    deleteChannel(channelID: string, callback?: callbackFunc): void
-    editChannelInfo(options: editChannelInfoOpts, callback?: callbackFunc): void
-
     sendMessage(options: sendMessageOpts, callback?: callbackFunc): void
     uploadFile(options: uploadFileOpts, callback?: callbackFunc): void
+    getMessage(options: getMessageOpts, callback?: callbackFunc): void
     getMessages(options: getMessagesOpts, callback?: callbackFunc): void
     editMessage(options: editMessageOpts, callback?: callbackFunc): void
     simulateTyping(channelID: string, callback?: callbackFunc): void
     deleteMessages(options: deleteMessagesOpts, callback?: callbackFunc): void
     deleteMessage(options: deleteMessageOpts, callback?: callbackFunc): void
+    pinMessage(options: pinMessageOpts, callback?: callbackFunc): void
+    deletePinnedMessage(options: deletePinnedMessageOpts, callback?: callbackFunc): void
+    getPinnedMessages(options: getPinnedMessagesOpts, callback?: callbackFunc): void
 
     /**
      * VOICE CHANNELS
      */
     joinVoiceChannel(channelID: string, callback?: callbackFunc): void
     leaveVoiceChannelVoiceChannel(channelID: string, callback?: callbackFunc): void
-    getAudioContext(channelID: string, callback: Function): void
+    getAudioContext(channelID: string, callback: (error, stream) => void): void
 
     /**
      * USERS
      */
     createDMChannel(userID: string, callback?: callbackFunc): void
+    editNickname(options: editNicknameOpts, callback?: callbackFunc): void
     addToRole(options: addAndRemoveFromRole, callback?: callbackFunc): void
     removeFromRole(options: addAndRemoveFromRole, callback?: callbackFunc): void
     moveUserTo(options: moveUserToOpts): void
-
     kick(options: actionsOnUserOpts, callback?: callbackFunc): void
     ban(options: banUserOpts, callback?: callbackFunc): void
     unban(options: actionsOnUserOpts, callback?: callbackFunc): void
@@ -447,10 +479,18 @@ declare namespace Discord {
     deafen(options: actionsOnUserOpts, callback?: callbackFunc): void
     undeafen(options: actionsOnUserOpts, callback?: callbackFunc): void
 
-    // not in gitbook
-    editNickname(options: editNicknameOpts, callback?: callbackFunc): void
+    // Methods that are not in GitBooks
 
-    // Below is not in gitbook
+    //v2
+    editChannelPermissions(options: editChannelPermissionsOpts, callback?: callbackFunc): void
+
+    /**
+     * CHANNELS
+     */
+    createChannel(options: createChannelOpts, callback?: callbackFunc): void
+    deleteChannel(channelID: string, callback?: callbackFunc): void
+    editChannelInfo(options: editChannelInfoOpts, callback?: callbackFunc): void
+
     /**
     * ROLES
     */
@@ -461,12 +501,9 @@ declare namespace Discord {
     /**
      * INVITES
      */
-    acceptInvite(inviteCode: string, callback?: callbackFunc): void
-    createInvite(options: createInviteOpts, callback: Function): void
-    deleteInvite(inviteCode: string, callback?: callbackFunc): void
-    queryInvite(inviteCode: string, callback: Function): void
-    listServerInvites(serverID: string, callback: Function): void
-    listChannelInvites(channelID: string, callback: Function): void
+    getServerInvites(serverID: string, callback: Function): void
+    getChannelInvites(channelID: string, callback: Function): void
+    getBans(serverID: string, callback?: callbackFunc): void
   }
 
   export class OAuth {
@@ -488,6 +525,59 @@ declare namespace Discord {
       "4010": "Invalid Shard"
     }
   }
+
+  export interface Colors {
+		DEFAULT: number;
+		AQUA: number;
+		GREEN: number;
+		BLUE: number;
+		PURPLE: number;
+		GOLD: number;
+		ORANGE: number;
+		RED: number;
+		GREY: number;
+		DARKER_GREY: number;
+		NAVY: number;
+		DARK_AQUA: number;
+		DARK_GREEN: number;
+		DARK_BLUE: number;
+		DARK_PURPLE: number;
+		DARK_GOLD: number;
+		DARK_ORANGE: number;
+		DARK_RED: number;
+		DARK_GREY: number;
+		LIGHT_GREY: number;
+		DARK_NAVY: number;
+	}
+
+  export interface Permissions {
+		GENERAL_CREATE_INSTANT_INVITE: number;
+		GENERAL_KICK_MEMBERS: number;
+		GENERAL_BAN_MEMBERS: number;
+		GENERAL_ADMINISTRATOR: number;
+		GENERAL_MANAGE_CHANNELS: number;
+		GENERAL_MANAGE_GUILD: number;
+		GENERAL_MANAGE_ROLES: number;
+		GENERAL_MANAGE_NICKNAMES: number;
+		GENERAL_CHANGE_NICKNAME: number;
+
+		TEXT_READ_MESSAGES: number;
+		TEXT_SEND_MESSAGES: number;
+		TEXT_SEND_TTS_MESSAGE: number;
+		TEXT_MANAGE_MESSAGES: number;
+		TEXT_EMBED_LINKS: number;
+		TEXT_ATTACH_FILES: number;
+		TEXT_READ_MESSAGE_HISTORY: number;
+		TEXT_MENTION_EVERYONE: number;
+		TEXT_EXTERNAL_EMOJIS: number;
+
+		VOICE_CONNECT: number;
+		VOICE_SPEAK: number;
+		VOICE_MUTE_MEMBERS: number;
+		VOICE_DEAFEN_MEMBERS: number;
+		VOICE_MOVE_MEMBERS: number;
+		VOICE_USE_VAD: number;
+	}
 }
 
 export = Discord;
