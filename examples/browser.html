@@ -1,0 +1,24 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>discord.io browser example</title>
+        <script src="index.js"></script> <!-- The discord.io client file -->
+    </head>
+    <body>
+        <script>
+            var client = new Discord.Client({
+                token: "",
+                autorun: true
+            });
+
+            client.on('message', function(user, userID, channelID, message, event) {
+                if (message === 'ping') {
+                    client.sendMessage({
+                        to: userID,
+                        message: "pong"
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
