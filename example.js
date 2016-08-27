@@ -52,11 +52,7 @@ function sendMessages(ID, messageArr, interval) {
 					to: ID,
 					message: messageArr.shift()
 				}, function(err, res) {
-					if (err) {
-						resArr.push(err);
-					} else {
-						resArr.push(res);
-					}
+					resArr.push(err || res);
 					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
 				_sendMessages();
@@ -78,11 +74,7 @@ function sendFiles(channelID, fileArr, interval) {
 					to: channelID,
 					file: fileArr.shift()
 				}, function(err, res) {
-					if (err) {
-						resArr.push(err);
-					} else {
-						resArr.push(res);
-					}
+					resArr.push(err || res);
 					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
 				});
 				_sendFiles();
