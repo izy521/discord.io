@@ -63,6 +63,8 @@ function OpusEncoder(sample_rate, channels, application) {
         return new Error( [Object.keys(Opus.ERRORS)[ERROR_CODES.indexOf( (encoder_error_code || decoder_error_code) )], error_code] );
     }
 
+    /* --Encoding-- */
+
     this.inData = new Uint16Array(Opus.MAX_INPUT_BYTES);
     this.inDataBytes = this.inData.byteLength;
     this.inDataPtr = Module._malloc(this.inDataBytes);
@@ -74,8 +76,8 @@ function OpusEncoder(sample_rate, channels, application) {
 
     /* --Decoding-- */
 
-    this.decodeInDataPtr = Module._malloc(4000);
-    this.opusHeap = new Uint8Array( Module.HEAPU8.buffer, this.decodeInDataPtr, 4000);
+    this.decodeInDataPtr = Module._malloc(Opus.MAX_OUTPUT_BYTES);
+    this.opusHeap = new Uint8Array( Module.HEAPU8.buffer, this.decodeInDataPtr, Opus.MAX_OUTPUT_BYTES );
 
     this.decodeOutDataPtr = Module._malloc(Opus.MAX_INPUT_BYTES);
     this.decodeOutData = new Uint16Array( Module.HEAPU16.buffer, this.decodeOutDataPtr, Opus.MAX_INPUT_BYTES );
@@ -99,6 +101,7 @@ OpusEncoder.prototype.decode = function(OPUS) {
 OpusEncoder.prototype.destroy = function() {
     Module._free(this.inDataPtr);
     Module._free(this.outDataPtr);
+    //Destroy encoder, loser.
 }
 
 function toBigEndian(inBuffer, outBuffer) {
@@ -114,14 +117,6 @@ function toLittleEndian(inBuffer, outBuffer) {
         outBuffer[2*i]=inBuffer[i]&0xFF;
         outBuffer[2*i+1]=(inBuffer[i]>>8)&0xFF;
     }
-}
-
-function copy(from, to) {
-    var i = from.length;
-    for (;i--;) {
-        to[i] = from[i];
-    }
-    return from.length;
 }
 
 module.exports = Opus;
