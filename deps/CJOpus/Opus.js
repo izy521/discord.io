@@ -18,105 +18,103 @@ Opus.ERRORS = {
 };
 Opus.SAMPLE_RATES       = [8000, 12000, 16000, 24000, 48000];
 Opus.CHANNELS           = [1, 2];
-Opus.MAX_FRAME_SIZE     = 5760;
-Opus.MAX_INPUT_BYTES    = 3840;
-Opus.MAX_OUTPUT_BYTES   = 4000;
 Opus.OpusEncoder        = OpusEncoder;
 
 var APPLICATION_CODES = Object.keys(Opus.APPLICATIONS).map(function(a) { return Opus.APPLICATIONS[a]; });
 var ERROR_CODES = Object.keys(Opus.ERRORS).map(function(e) { return Opus.ERRORS[e]; });
-
 
 function OpusEncoder(sample_rate, channels, application) {
     if (Opus.CHANNELS.indexOf(channels) < 0)        channels = 2;
     if (Opus.SAMPLE_RATES.indexOf(sample_rate) < 0) sample_rate = 48000;
     if (APPLICATION_CODES.indexOf(application) < 0) application = Opus.APPLICATIONS.AUDIO;
 
-    var encoder_error_pointer = Module._malloc(4),
-        encoder_error_code,
-        encoder_error;
-    var decoder_error_pointer = Module._malloc(4),
-        decoder_error_code,
-        decoder_error;
+    this.encoder = Module._create_encoder_and_decoder(sample_rate, channels, application);
 
-    this.encoder = Module._create_encoder(
-        sample_rate, 
-        channels,
-        application,
-        encoder_error_pointer
-    );
-    this.decoder = Module._create_decoder(
-        sample_rate,
-        channels,
-        decoder_error_pointer
-    );
+    var encoderError = Module._get_encoder_error(this.encoder);
+    var decoderError = Module._get_decoder_error(this.encoder);
+
+    if (encoderError || decoderError) {
+        throw new OpusError( encoderError || decoderError );
+    }
 
     this.channels = channels;
 
-    encoder_error_code = Module.getValue(encoder_error_pointer, 'i32');
-    decoder_error_code = Module.getValue(decoder_error_pointer, 'i32');
+    //Is this correct?
+    this.encodeFrameSize = sample_rate / 50;
 
-    Module._free(encoder_error_pointer);
-    Module._free(decoder_error_pointer);
+    // --Encoding--
+    this.pcmOffset     = Module._get_in_pcm_offset(this.encoder);
+    this.encodedOffset = Module._get_encoded_offset(this.encoder);
 
-    if (encoder_error_code || decoder_error_code) {
-        return new Error( [Object.keys(Opus.ERRORS)[ERROR_CODES.indexOf( (encoder_error_code || decoder_error_code) )], error_code] );
+    // --Decoding--
+    this.opusOffset    = Module._get_in_opus_offset(this.encoder);
+    this.decodedOffset = Module._get_decoded_little_endian_offset(this.encoder); 
+}
+
+OpusEncoder.prototype.encode = function( PCM ) {
+    if ( !isExpectedType(PCM) ) {
+        throw new TypeError( Object.prototype.toString.call(PCM) + " is not a valid type (Buffer, TypedArray, Array)");
     }
 
-    /* --Encoding-- */
+    Module.HEAPU8.set( PCM, this.pcmOffset );
 
-    this.inData = new Uint16Array(Opus.MAX_INPUT_BYTES);
-    this.inDataBytes = this.inData.byteLength;
-    this.inDataPtr = Module._malloc(this.inDataBytes);
+    var length = Module._encode(this.encoder, PCM.length, this.encodeFrameSize);
 
-    this.pcmHeap = new Uint16Array( Module.HEAPU16.buffer, this.inDataPtr, this.inDataBytes );
+    if (length < 0) throw new OpusError(length);
 
-    this.outDataPtr = Module._malloc(Opus.MAX_OUTPUT_BYTES);
-    this.outData = new Uint8Array( Module.HEAPU8.buffer, this.outDataPtr, Opus.MAX_OUTPUT_BYTES );
-
-    /* --Decoding-- */
-
-    this.decodeInDataPtr = Module._malloc(Opus.MAX_OUTPUT_BYTES);
-    this.opusHeap = new Uint8Array( Module.HEAPU8.buffer, this.decodeInDataPtr, Opus.MAX_OUTPUT_BYTES );
-
-    this.decodeOutDataPtr = Module._malloc(Opus.MAX_INPUT_BYTES);
-    this.decodeOutData = new Uint16Array( Module.HEAPU16.buffer, this.decodeOutDataPtr, Opus.MAX_INPUT_BYTES );
-    this.decodeResultData = new Uint16Array(Opus.MAX_INPUT_BYTES);
-    
+    return Module.HEAPU8.slice( this.encodedOffset, this.encodedOffset + length );
 }
 
-OpusEncoder.prototype.encode = function(PCM) {
-    toBigEndian(PCM, this.inData);
-    this.pcmHeap.set( this.inData.subarray(0, PCM.length) );
-    return this.outData.slice(0, Module._encode( this.encoder, this.pcmHeap.byteOffset, 960, this.outData.byteOffset, Opus.MAX_OUTPUT_BYTES ) );
+OpusEncoder.prototype.decode = function( OPUS ) {
+    if ( !isExpectedType(OPUS) ) {
+        throw new TypeError( Object.prototype.toString.call(OPUS) + " is not a valid type (Buffer, TypedArray, Array)");
+    }
+
+    Module.HEAPU8.set( OPUS, this.opusOffset );
+
+    var frameSize = Module._decode( this.encoder, OPUS.length );
+
+    if (frameSize < 0) throw new OpusError(frameSize);
+
+    return Module.HEAP16.slice( this.decodedOffset / 2, (this.decodedOffset /2) + (frameSize * 2 * this.channels) );
 }
 
-OpusEncoder.prototype.decode = function(OPUS) {
-    this.opusHeap.set( OPUS );
-    var frame_size = Module._decode( this.decoder, this.opusHeap.byteOffset, OPUS.length, this.decodeOutData.byteOffset, 960);
-    toLittleEndian(this.decodeOutData, this.decodeResultData);
-    return this.decodeResultData.slice(0, frame_size * 2 * this.channels);
+OpusEncoder.prototype.encodeUnsafe = function( PCM ) {
+    Module.HEAPU8.set( PCM, this.pcmOffset );
+    return Module.HEAPU8.subarray(
+        this.encodedOffset, 
+        this.encodedOffset + Module._encode(
+            this.encoder, 
+            PCM.length, 
+            this.encodeFrameSize
+        )
+    );
+}
+
+OpusEncoder.prototype.decodeUnsafe = function( OPUS ) {
+    Module.HEAPU8.set( OPUS, this.opusOffset );
+    return Module.HEAP16.subarray(
+        this.decodedOffset / 2,
+        (this.decodedOffset / 2) +
+            (Module._decode(
+                this.encoder,
+                OPUS.length
+            ) * 2 * this.channels)
+    );
 }
 
 OpusEncoder.prototype.destroy = function() {
-    Module._free(this.inDataPtr);
-    Module._free(this.outDataPtr);
-    //Destroy encoder, loser.
+    Module._destroy_encoder(this.encoder);
 }
 
-function toBigEndian(inBuffer, outBuffer) {
-    var i = inBuffer.length;
-    for (;i--;) {
-        outBuffer[i] = inBuffer[2*i+1]<<8|inBuffer[2*i];
-    }
+function OpusError(code) {
+    var error = new Error(Object.keys(Opus.ERRORS)[ERROR_CODES.indexOf(code)]);
+    error.code = code;
+    return error;
 }
 
-function toLittleEndian(inBuffer, outBuffer) {
-    var i = inBuffer.length;
-    for (;i--;) {
-        outBuffer[2*i]=inBuffer[i]&0xFF;
-        outBuffer[2*i+1]=(inBuffer[i]>>8)&0xFF;
-    }
+function isExpectedType(t) {
+    return t instanceof Buffer || ArrayBuffer.isView(t) || Array.isArray(t);
 }
 
 module.exports = Opus;
