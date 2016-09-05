@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/izy521/discord.io#readme",
   "dependencies": {
-    "ws": "^1.1.0",
-    "tweetnacl": "^0.14.0"
+    "cjopus": "0.0.2",
+    "tweetnacl": "^0.14.0",
+    "ws": "^1.1.0"
   },
   "optionalDependencies": {
     "node-opus": "^0.1.0"
