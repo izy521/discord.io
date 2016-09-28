@@ -250,11 +250,14 @@ declare type createInviteOpts = {
 
 declare type editRoleOpts = {
   serverID: string,
-  role: string,
+  roleID: string,
   name: string,
   hoist: boolean,
   permissions: permissions,
-  color: colors
+  color: colors,
+  mentionable: boolean,
+  // I dont know what position is and it is unused in current code
+  position: any
 }
 
 declare type deleteRoleOpts = {
@@ -277,6 +280,12 @@ declare type editChannelPermissionsOpts = {
   default: Discord.Permissions[]
 }
 
+declare type editServerWidgetOpts = {
+  serverID: string,
+  channelID: string,
+  enabled: boolean
+}
+
 /**
  * CLASSES
  */
@@ -286,6 +295,9 @@ declare class Resource {
 }
 
 declare namespace Discord {
+
+  export let version: string;
+
   export class Server extends Resource {
     name: string;
     id: string;
@@ -483,6 +495,9 @@ declare namespace Discord {
 
     //v2
     editChannelPermissions(options: editChannelPermissionsOpts, callback?: callbackFunc): void
+
+    //v2.1.0
+    editServerWidget(options: editServerWidgetOpts, callback?: callbackFunc): void
 
     /**
      * CHANNELS
