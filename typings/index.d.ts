@@ -560,6 +560,7 @@ declare namespace Discord {
 		GENERAL_MANAGE_ROLES: number;
 		GENERAL_MANAGE_NICKNAMES: number;
 		GENERAL_CHANGE_NICKNAME: number;
+        GENERAL_MANAGE_EMOJIS: number;
 
 		TEXT_READ_MESSAGES: number;
 		TEXT_SEND_MESSAGES: number;
@@ -577,6 +578,8 @@ declare namespace Discord {
 		VOICE_DEAFEN_MEMBERS: number;
 		VOICE_MOVE_MEMBERS: number;
 		VOICE_USE_VAD: number;
+
+        UNKNOWN_29: number;
 	}
 }
 
