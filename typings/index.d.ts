@@ -460,7 +460,7 @@ declare namespace Discord {
      * VOICE CHANNELS
      */
     joinVoiceChannel(channelID: string, callback?: callbackFunc): void
-    leaveVoiceChannelVoiceChannel(channelID: string, callback?: callbackFunc): void
+    leaveVoiceChannel(channelID: string, callback?: callbackFunc): void
     getAudioContext(channelID: string, callback: (error, stream) => void): void
 
     /**
