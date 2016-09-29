@@ -286,6 +286,45 @@ declare type editServerWidgetOpts = {
   enabled: boolean
 }
 
+declare type addServerEmojiOpts = {
+    serverID: string,
+    name: string,
+    image: string
+}
+
+declare type editServerEmojiOpts = {
+    serverID: string,
+    emojiID: string,
+    name: string,
+    role: string[]
+}
+
+declare type deleteServerEmojiOpts = {
+    serverID: string,
+    emojiID: string
+}
+
+declare type deleteChannelPermissionOpts = {
+    channelID: string,
+    userID: string,
+    roleID: string
+}
+
+declare type editNoteOpts = {
+  userID: string,
+  note: string
+}
+
+declare type getMemberOpts = {
+  serverID: string,
+  userID: string
+}
+
+declare type getMembersOpts = {
+  limit: number,
+  after: string
+}
+
 /**
  * CLASSES
  */
@@ -496,8 +535,16 @@ declare namespace Discord {
     //v2
     editChannelPermissions(options: editChannelPermissionsOpts, callback?: callbackFunc): void
 
-    //v2.1.0
     editServerWidget(options: editServerWidgetOpts, callback?: callbackFunc): void
+
+    addServerEmoji(options: addServerEmojiOpts, callback?: callbackFunc): void
+    editServerEmoji(options: editServerEmojiOpts, callback?: callbackFunc): void
+    deleteServerEmoji(options: deleteServerEmojiOpts, callback?: callbackFunc): void
+
+    editNote(options: editNoteOpts, callback?: callbackFunc): void
+    getMember(options: getMemberOpts, callback?: callbackFunc): void
+    getMembers(options: getMembersOpts, callback?: callbackFunc): void
+    getAllUsers(callback: callbackFunc): void
 
     /**
      * CHANNELS
@@ -505,6 +552,7 @@ declare namespace Discord {
     createChannel(options: createChannelOpts, callback?: callbackFunc): void
     deleteChannel(channelID: string, callback?: callbackFunc): void
     editChannelInfo(options: editChannelInfoOpts, callback?: callbackFunc): void
+    deleteChannelPermission(options: deleteChannelPermissionOpts, callback?: callbackFunc): void
 
     /**
     * ROLES
