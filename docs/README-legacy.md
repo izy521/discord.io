@@ -99,7 +99,7 @@ bot.disconnect()
 ````javascript
 bot.editUserInfo({
     avatar: 'ImageEncodedIntoBase64String', //Optional
-    email: 'youremail@provder.com', //Optional
+    email: 'youremail@provider.com', //Optional
     new_password: 'supersecretpass123', //Optional
     password: 'supersecretpass', //Required
     username: 'Yuna' //Optional
