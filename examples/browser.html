@@ -11,6 +11,10 @@
                 autorun: true
             });
 
+            client.on('ready', function() {
+                console.log("%s (%s)... in the browser!", client.username, client.id);
+            });
+
             client.on('message', function(user, userID, channelID, message, event) {
                 if (message === 'ping') {
                     client.sendMessage({
