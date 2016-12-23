@@ -3,7 +3,7 @@ var drole = "261707832703975424"; /* roleid to be applied when someone joins the
 var serverid = "261707171824271362"; /* your server id */
 var bot = new Discord.Client({
   autorun: true, /* If false, you need to connect to the server using bot.connect(); */
-  token: "MjYxNzA3MzM3MTIxNjYwOTM4.Cz47Iw.IBmLS-0K66dQYuxc8VbySsJLYRA" /* your discordapp token */
+  token: "" /* your discordapp token */
 });
 
 bot.on('ready', function() {
