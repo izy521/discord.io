@@ -1,6 +1,6 @@
 var Discord = require('discord.io');
-var drole = "261707832703975424"; /* roleid to be applied when someone joins the server */
-var serverid = "261707171824271362"; /* your server id */
+var drole = ""; /* roleid to be applied when someone joins the server */
+var serverid = ""; /* your server id */
 var bot = new Discord.Client({
   autorun: true, /* If false, you need to connect to the server using bot.connect(); */
   token: "" /* your discordapp token */
