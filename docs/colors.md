@@ -1,15 +1,21 @@
-Example for using colors:
+There are two ways to set role colors with this lib.
 
+The first method allows you to provide any color you want, as a Number. I recommend using Hex numbers as this maps easily to HTML color codes. Assuming you want to use the color `#F35353`, you can just use `0xF35353`
+
+```js
+bot.editRole({
+	color: 0xF35353
+});
+```
+
+The second method is providing the name of one of the official colors Discord has on its picker. The name you type will map to one of the colors below.
 ```javascript
 bot.editRole({
-	serverID: "ServerID",
-	roleID: "RoleID",
 	color: "RED"
 });
 ```
 
-Official color list (just type their names):
-
+Official color list:
 ```javascript
 	DEFAULT: 0,
 	AQUA: 1752220,
@@ -32,11 +38,4 @@ Official color list (just type their names):
 	DARK_GREY: 9936031,
 	LIGHT_GREY: 12370112,
 	DARK_NAVY: 2899536
-```
-
-Unofficially, until it's later patched, you can use any HTML color code.
-```javascript
-bot.editRole({
-	color: "#FF00FF" //Will make a pink role
-});
 ```
