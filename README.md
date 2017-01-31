@@ -5,21 +5,38 @@ A small, single-file, fully featured [Discordapp](https://discordapp.com) librar
 
 [![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
 
-### Installation
+### Requirements
+**Required**:
+* **Node.js 0.10.x** or greater
+* **Web Browser** if not using Node.js
+
+**Optional**:
+* **Audio**
+    * **Node.js 0.12.x**
+    * **ffmpeg/avconv** (needs to be added to PATH)
+    
+### [Documentation / Gitbooks](https://izy521.gitbooks.io/discord-io/content/)
+
+### Getting Started:
+
+#### Installing
+**[Stable](https://www.npmjs.com/package/discord.io)**
 `npm install discord.io`
 
-### [Documentation / Gitbooks](https://www.gitbook.com/book/izy521/discord-io/details)
+**[Latest](https://github.com/izy521/discord.io)**
+`npm install izy521/discord.io`
 
-### Example
+#### Example
 ```javascript
 var Discord = require('discord.io');
+
 var bot = new Discord.Client({
-    token: "",
-    autorun: true
+    token: ""
+    autorun: true,
 });
 
 bot.on('ready', function() {
-    console.log(bot.username + " - (" + bot.id + ")");
+    console.log('Logged in as %s - %s\n', bot.username, bot.id);
 });
 
 bot.on('message', function(user, userID, channelID, message, event) {
@@ -31,4 +48,3 @@ bot.on('message', function(user, userID, channelID, message, event) {
     }
 });
 ```
-
