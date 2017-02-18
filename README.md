@@ -31,8 +31,8 @@ A small, single-file, fully featured [Discordapp](https://discordapp.com) librar
 var Discord = require('discord.io');
 
 var bot = new Discord.Client({
-    token: ""
-    autorun: true,
+    token: "",
+    autorun: true
 });
 
 bot.on('ready', function() {
