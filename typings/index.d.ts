@@ -128,7 +128,7 @@ declare type sendMessageOpts = {
 
 declare type uploadFileOpts = {
   to: string,
-  file: string,
+  file: string|Buffer,
   filename?: string,
   message?: string
 }
