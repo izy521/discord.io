@@ -4,7 +4,7 @@
 
 A small, single-file, fully featured [Discordapp](https://discordapp.com) library for Node.js and browsers.
 
-[![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
+[![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg) [![API Testing](https://img.shields.io/badge/API%20Test-RapidAPI-blue.svg)](https://rapidapi.com/package/DiscordBot/functions?utm_source=DiscordBotGithub&utm_medium=button&utm_content=Vender_Github)
 
 ### Requirements
 **Required**:
