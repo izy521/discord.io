@@ -6,6 +6,8 @@ A small, single-file, fully featured [Discordapp](https://discordapp.com) librar
 
 [![Discord](https://discordapp.com/api/guilds/66192955777486848/widget.png)](https://discord.gg/0MvHMfHcTKVVmIGP) [![NPM](https://img.shields.io/npm/v/discord.io.svg)](https://img.shields.io/npm/v/gh-badges.svg)
 
+**With V5 gateway getting deprecated on Oct. 16, this is a first step at getting V6 to work.**
+
 ### Requirements
 **Required**:
 * **Node.js 0.10.x** or greater
