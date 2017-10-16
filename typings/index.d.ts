@@ -351,6 +351,12 @@ declare type getMembersOpts = {
   after: string
 }
 
+declare type reactionOpts = {
+  channelID: string,
+  messageID: string,
+  reaction: string
+}
+
 /**
  * CLASSES
  */
@@ -532,7 +538,7 @@ declare namespace Discord {
     pinMessage(options: pinMessageOpts, callback?: callbackFunc): void
     deletePinnedMessage(options: deletePinnedMessageOpts, callback?: callbackFunc): void
     getPinnedMessages(options: getPinnedMessagesOpts, callback?: callbackFunc): void
-
+    addReaction(options: reactionOpts, callback?: callbackFunc): void
     /**
      * VOICE CHANNELS
      */
