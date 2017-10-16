@@ -120,10 +120,36 @@ declare interface permissions {
  */
 declare type sendMessageOpts = {
   to: string,
-  message: string,
+  message?: string,
   tts?: boolean,
   nonce?: string,
-  typing?: boolean
+  typing?: boolean,
+  embed?: embedMessageOpts
+}
+
+declare type embedMessageOpts = {
+  author?: {
+    icon_url?: string,
+    name: string,
+    url?: string
+  },
+  color?: number,
+  description?: string,
+  fields?: [{
+    name: string,
+    value?: string,
+    inline?: boolean
+  }],
+  thumbnail?: {
+    url: string
+  },
+  title: string,
+  timestamp?: Date
+  url?: string,
+  footer?: {
+    icon_url?: string,
+    text: string
+  }
 }
 
 declare type uploadFileOpts = {
