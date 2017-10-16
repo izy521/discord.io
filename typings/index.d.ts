@@ -120,10 +120,36 @@ declare interface permissions {
  */
 declare type sendMessageOpts = {
   to: string,
-  message: string,
+  message?: string,
   tts?: boolean,
   nonce?: string,
-  typing?: boolean
+  typing?: boolean,
+  embed?: embedMessageOpts
+}
+
+declare type embedMessageOpts = {
+  author?: {
+    icon_url?: string,
+    name: string,
+    url?: string
+  },
+  color?: number,
+  description?: string,
+  fields?: [{
+    name: string,
+    value?: string,
+    inline?: boolean
+  }],
+  thumbnail?: {
+    url: string
+  },
+  title: string,
+  timestamp?: Date
+  url?: string,
+  footer?: {
+    icon_url?: string,
+    text: string
+  }
 }
 
 declare type uploadFileOpts = {
@@ -325,6 +351,12 @@ declare type getMembersOpts = {
   after: string
 }
 
+declare type reactionOpts = {
+  channelID: string,
+  messageID: string,
+  reaction: string
+}
+
 /**
  * CLASSES
  */
@@ -506,7 +538,7 @@ declare namespace Discord {
     pinMessage(options: pinMessageOpts, callback?: callbackFunc): void
     deletePinnedMessage(options: deletePinnedMessageOpts, callback?: callbackFunc): void
     getPinnedMessages(options: getPinnedMessagesOpts, callback?: callbackFunc): void
-
+    addReaction(options: reactionOpts, callback?: callbackFunc): void
     /**
      * VOICE CHANNELS
      */
