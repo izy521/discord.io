@@ -427,6 +427,7 @@ declare namespace Discord {
     deaf: boolean;
     status: userStatus;
     voice_channel_id: string;
+    nick: string;
   }
 
   export class Role extends Resource {
@@ -544,7 +545,7 @@ declare namespace Discord {
      */
     joinVoiceChannel(channelID: string, callback?: callbackFunc): void
     leaveVoiceChannel(channelID: string, callback?: callbackFunc): void
-    getAudioContext(channelID: string, callback: (error, stream) => void): void
+    getAudioContext(channelID: string, callback: (error: string, stream: NodeJS.ReadableStream) => void): void
 
     /**
      * USERS
