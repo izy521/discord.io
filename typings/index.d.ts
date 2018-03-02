@@ -232,7 +232,7 @@ declare type setPresenceOpts = {
 declare type addAndRemoveFromRole = {
   serverID: string,
   userID: string,
-  role: string
+  roleID: string
 }
 
 declare type moveUserToOpts = {
