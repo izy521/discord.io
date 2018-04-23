@@ -97,7 +97,9 @@ declare interface permissions {
   GENERAL_MANAGE_ROLES?: boolean;
   GENERAL_MANAGE_NICKNAMES?: boolean;
   GENERAL_CHANGE_NICKNAME?: boolean;
+  GENERAL_MANAGE_WEBHOOKS?: boolean;
 
+  TEXT_ADD_REACTIONS?: boolean;
   TEXT_READ_MESSAGES?: boolean;
   TEXT_SEND_MESSAGES?: boolean;
   TEXT_SEND_TTS_MESSAGE?: boolean;
