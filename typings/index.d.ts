@@ -413,7 +413,7 @@ declare namespace Discord {
   export class User extends Resource {
     username: string;
     id: string;
-    discriminator: number;
+    discriminator: string;
     avatar: string;
     bot: boolean;
     game: Object;
@@ -445,7 +445,7 @@ declare namespace Discord {
     id: string;
     username: string;
     email: string;
-    discriminator: number;
+    discriminator: string;
     avatar: string;
     bot: boolean;
     verified: boolean;
