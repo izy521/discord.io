@@ -135,11 +135,11 @@ declare type embedMessageOpts = {
   },
   color?: number,
   description?: string,
-  fields?: [{
+  fields?: {
     name: string,
     value?: string,
     inline?: boolean
-  }],
+  }[],
   thumbnail?: {
     url: string
   },
