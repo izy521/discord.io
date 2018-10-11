@@ -407,10 +407,17 @@ declare namespace Discord {
   }
 
   export class DMChannel extends Resource {
-    recipient: Object;
+    recipient: DMRecipient;
     last_message_id: string;
     id: string;
   }
+
+   export class DMRecipient extends Resource {
+     username: string;
+     id: string;
+     discriminator: string;
+     avatar: string;
+   }
 
   export class User extends Resource {
     username: string;
