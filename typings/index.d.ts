@@ -29,7 +29,7 @@ declare type channelType = "voice" | "text";
  * Events callbacks
  */
 declare type readyCallback = (event: WebSocketEvent) => void;
-declare type messageCallback = (user: string, userID: string, channelID: string, mesage: string, event: WebSocketEvent) => void;
+declare type messageCallback = (user: string, userID: string, channelID: string, message: string, event: WebSocketEvent) => void;
 declare type presenceCallback = (user: string, userID: string, status: string, game: game, event: WebSocketEvent) => void;
 declare type anyCallback = (event: WebSocketEvent) => void;
 declare type disconnectCallback = (errMsg: string, code: number) => void;
@@ -232,7 +232,7 @@ declare type setPresenceOpts = {
 declare type addAndRemoveFromRole = {
   serverID: string,
   userID: string,
-  role: string
+  roleID: string
 }
 
 declare type moveUserToOpts = {
@@ -242,13 +242,13 @@ declare type moveUserToOpts = {
 }
 
 declare type actionsOnUserOpts = {
-  channelID: string,
-  target: string
+  serverID: string,
+  userID: string,
 }
 
 declare type banUserOpts = {
-  channelID: string,
-  target: string,
+  serverID: string,
+  userID: string,
   lastDays?: number
 }
 
@@ -288,7 +288,7 @@ declare type editRoleOpts = {
 
 declare type deleteRoleOpts = {
   serverID: string,
-  role: string
+  roleID: string
 }
 
 declare type editNicknameOpts = {
@@ -300,7 +300,7 @@ declare type editNicknameOpts = {
 declare type editChannelPermissionsOpts = {
   channelID: string,
   userID: string,
-  roleID: string,
+  role: string,
   allow: Discord.Permissions[],
   deny: Discord.Permissions[],
   default: Discord.Permissions[]
