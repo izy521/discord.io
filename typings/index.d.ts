@@ -3,7 +3,7 @@
  */
 declare type region = "brazil" | "frankfurt" | "amsterdam" | "london" | "singapore" | "us-east" | "us-central" | "us-south" | "us-west" | "sydney";
 
-declare type userStatus = "online" | "idle" | "offline";
+declare type userStatus = "online" | "idle" | "dnd" | "offline";
 
 declare type callbackFunc = (error: cbError, response: any) => void;
 
@@ -15,7 +15,10 @@ declare type WebSocketEventReady = {
   relationships: any[];
   private_channels: any[];
   presences: any[];
-  guilds: any[];
+  guilds: {
+    unavailable: boolean;
+    id: string;
+  }[];
   application: {
     id: string;
     flags: number;
@@ -29,19 +32,48 @@ declare type WebSocketEventMessage = {
   timestamp: string;
   pinned: boolean;
   nonce: string;
-  mentions: any[];
-  mention_roles: any[];
+  mentions: {
+    username: string;
+    member: Discord.Member;
+    id: string;
+    discriminator: string;
+    bot?: boolean;
+    avatar?: string;
+  }[];
+  mention_roles: string[];
   mention_everyone: boolean;
   member: Discord.Member;
   id: string;
   flags: number;
-  embeds: any[];
+  embeds: embedMessageOpts[];
   edited_timestamp?: any;
   content: string;
   channel_id: string;
   author: Discord.User;
-  attachments: any[];
+  attachments: {
+    width: number;
+    height: number;
+    size: number;
+    id: string;
+    filename: string;
+    url: string;
+    proxy_url: string;
+  }[];
   guild_id: string;
+};
+
+declare type WebSocketEventPresence = {
+  user: Discord.User;
+  status: userStatus;
+  roles: string[];
+  guild_id: string;
+  game?: game;
+  client_status: {
+    web?: userStatus;
+    desktop?: userStatus;
+    mobile?: userStatus;
+  };
+  activities: game[];
 };
 
 declare type WebSocketEvent<EventType=any> = {
@@ -55,6 +87,9 @@ declare type game = {
   name: string;
   type: number;
   url?: string;
+  created_at?: number;
+  id?: string;
+  state?: string;
 };
 
 declare type colors = "DEFAULT" | "AQUA" | "GREEN" | "BLUE" | "PURPLE" | "GOLD" | "ORANGE" | "RED" | "GREY" | "DARKER_GREY" | "NAVY" | "DARK_AQUA" | "DARK_GREEN" | "DARK_BLUE" | "DARK_PURPLE" | "DARK_GOLD" | "DARK_ORANGE" | "DARK_RED" | "DARK_GREY" | "LIGHT_GREY" | "DARK_NAVY";
@@ -67,7 +102,7 @@ declare type channelType = "voice" | "text";
  */
 declare type readyCallback = (event: WebSocketEvent<WebSocketEventReady>) => void;
 declare type messageCallback = (user: string, userID: string, channelID: string, message: string, event: WebSocketEvent<WebSocketEventMessage>) => void;
-declare type presenceCallback = (user: string, userID: string, status: string, game: game, event: WebSocketEvent) => void;
+declare type presenceCallback = (user: string, userID: string, status: string, game: game, event: WebSocketEvent<WebSocketEventPresence>) => void;
 declare type anyCallback = (event: WebSocketEvent) => void;
 declare type disconnectCallback = (errMsg: string, code: number) => void;
 
@@ -165,6 +200,7 @@ declare type sendMessageOpts = {
 }
 
 declare type embedMessageOpts = {
+  type?: string;
   author?: {
     icon_url?: string,
     name: string,
@@ -448,9 +484,9 @@ declare namespace Discord {
   }
 
   export class User extends Resource {
-    username: string;
+    username?: string;
     id: string;
-    discriminator: string;
+    discriminator?: string;
     avatar?: string;
     verified?: boolean;
     mfa_enabled?: boolean;
@@ -460,7 +496,6 @@ declare namespace Discord {
 
   export class Member extends Resource {
     id: string;
-    discriminator: string;
     roles: string[];
     mute: boolean;
     joined_at: string;
