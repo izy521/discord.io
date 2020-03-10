@@ -24,8 +24,8 @@ A small, single-file, fully featured [Discordapp](https://discordapp.com) librar
 **[Stable](https://www.npmjs.com/package/discord.io)**
 `npm install discord.io`
 
-**[Latest](https://github.com/izy521/discord.io)**
-`npm install izy521/discord.io`
+**[Latest](https://github.com/jsrobson10/discord.io)**
+`npm install jsrobson10/discord.io`
 
 #### Example
 ```javascript
