@@ -7,8 +7,45 @@ declare type userStatus = "online" | "idle" | "offline";
 
 declare type callbackFunc = (error: cbError, response: any) => void;
 
-declare type WebSocketEvent = {
-  d: any;
+declare type WebSocketEventReady = {
+  v: number;
+  user_settings: any;
+  user: Discord.User,
+  session_id: string;
+  relationships: any[];
+  private_channels: any[];
+  presences: any[];
+  guilds: any[];
+  application: {
+    id: string;
+    flags: number;
+  };
+  _trace: string[];
+};
+
+declare type WebSocketEventMessage = {
+  type: number;
+  tts: boolean;
+  timestamp: string;
+  pinned: boolean;
+  nonce: string;
+  mentions: any[];
+  mention_roles: any[];
+  mention_everyone: boolean;
+  member: Discord.Member;
+  id: string;
+  flags: number;
+  embeds: any[];
+  edited_timestamp?: any;
+  content: string;
+  channel_id: string;
+  author: Discord.User;
+  attachments: any[];
+  guild_id: string;
+};
+
+declare type WebSocketEvent<EventType=any> = {
+  d: EventType;
   op: number;
   s: number;
   t: string;
@@ -28,8 +65,8 @@ declare type channelType = "voice" | "text";
 /**
  * Events callbacks
  */
-declare type readyCallback = (event: WebSocketEvent) => void;
-declare type messageCallback = (user: string, userID: string, channelID: string, message: string, event: WebSocketEvent) => void;
+declare type readyCallback = (event: WebSocketEvent<WebSocketEventReady>) => void;
+declare type messageCallback = (user: string, userID: string, channelID: string, message: string, event: WebSocketEvent<WebSocketEventMessage>) => void;
 declare type presenceCallback = (user: string, userID: string, status: string, game: game, event: WebSocketEvent) => void;
 declare type anyCallback = (event: WebSocketEvent) => void;
 declare type disconnectCallback = (errMsg: string, code: number) => void;
@@ -413,14 +450,17 @@ declare namespace Discord {
   export class User extends Resource {
     username: string;
     id: string;
-    discriminator: number;
-    avatar: string;
-    bot: boolean;
-    game: Object;
+    discriminator: string;
+    avatar?: string;
+    verified?: boolean;
+    mfa_enabled?: boolean;
+    email?: any;
+    bot?: boolean;
   }
 
   export class Member extends Resource {
     id: string;
+    discriminator: string;
     roles: string[];
     mute: boolean;
     joined_at: string;
@@ -445,7 +485,7 @@ declare namespace Discord {
     id: string;
     username: string;
     email: string;
-    discriminator: number;
+    discriminator: string;
     avatar: string;
     bot: boolean;
     verified: boolean;
