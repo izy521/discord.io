@@ -373,7 +373,7 @@ declare type editNicknameOpts = {
 declare type editChannelPermissionsOpts = {
   channelID: string,
   userID: string,
-  role: string,
+  roleID: string,
   allow: Discord.Permissions[],
   deny: Discord.Permissions[],
   default: Discord.Permissions[]
@@ -386,27 +386,27 @@ declare type editServerWidgetOpts = {
 }
 
 declare type addServerEmojiOpts = {
-    serverID: string,
-    name: string,
-    image: string
+  serverID: string,
+  name: string,
+  image: string
 }
 
 declare type editServerEmojiOpts = {
-    serverID: string,
-    emojiID: string,
-    name: string,
-    role: string[]
+  serverID: string,
+  emojiID: string,
+  name: string,
+  roleID: string[]
 }
 
 declare type deleteServerEmojiOpts = {
-    serverID: string,
-    emojiID: string
+  serverID: string,
+  emojiID: string
 }
 
 declare type deleteChannelPermissionOpts = {
-    channelID: string,
-    userID: string,
-    roleID: string
+  channelID: string,
+  userID: string,
+  roleID: string
 }
 
 declare type editNoteOpts = {
